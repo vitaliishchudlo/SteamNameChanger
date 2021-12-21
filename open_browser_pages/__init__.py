@@ -1,1 +1,0 @@
-from .steam import open_authorization_page
