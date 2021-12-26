@@ -1,45 +1,34 @@
-
-import os
-from dotenv import load_dotenv
-load_dotenv(dotenv_path='.env')
-
-
 def files_manager():
     """
     Checks for the required script files.
-
-    :return:
     """
-
     pass
 
 
 def set_settings():
-    print(os.getenv('First'))
-    print(os.getenv('Second'))
-    print(os.getenv('Login'))
-    print(os.getenv('Password'))
-    os.putenv('Login', 'My')
-    print(os.getenv('Login'))
+    """
+    The function that is responsible for initialization the configurations from config file.
+    """
+    pass
 
 
-
-
-
-
-
-
+def get_menu():
+    """
+     The function that is responsible for main menu of the program.
+    """
+    pass
 
 
 def app():
+    """
+    The main function, which responsible for starting the program and all managing it.
+    """
     try:
         set_settings()
+
+        get_menu()
     except Exception as err:
-        print(f'[Error]: Some trouble with program. We can`t start it.\n[{err}]')
-
-
-
-
+        print(f'[Error]: There were some errors when starting the program.\n[Reason]: {err}')
 
 
 if __name__ == '__main__':
