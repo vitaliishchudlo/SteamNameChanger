@@ -4,10 +4,10 @@
         "password": ""
     },
     "nickNamesManagement": {
-        "NickNamesForChange": [],
-        "LastNickName": null
+        "nickNamesForChange": [],
+        "lastNickName": null
     },
     "chromeWindowSettings": {
-        "HideWindow": false
+        "hideWindow": false
     }
 }
