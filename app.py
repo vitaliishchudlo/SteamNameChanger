@@ -1,11 +1,15 @@
 import os
-
-from scripts import create_config_file, create_chrome_webdriver
+import time
 
 from selenium import webdriver
 
-
+from data import PLATFORM_RUNNING, MENU_CHOOSES
 from response_handler import errors
+from scripts import create_config_file, create_chrome_webdriver, hide_browser_window
+
+
+
+
 
 def files_manager():
     """
@@ -15,38 +19,42 @@ def files_manager():
     if not os.path.isfile('config.json'):
         create_config_file()
     #  Create chrome webdriver file
-    import ipdb; ipdb.set_trace()
-    if not os.path.isfile('chromedriver'):
-        create_chrome_webdriver()
+    if PLATFORM_RUNNING == 'Linux':
+        if not os.path.isfile('chromedriver'):
+            create_chrome_webdriver('/chromedriver_linux64.zip')
+    elif PLATFORM_RUNNING == 'Windows':
+        if not os.path.isfile('chromedriver.exe'):
+            create_chrome_webdriver('/chromedriver_win32.zip')
+    else:
+        raise Exception(errors.platformRunning())
 
     # return all logs here
 
 
-def set_settings():
+def set_options():
     """
     The function that is responsible for initialization the configurations from config file.
     """
     try:
         options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])  # Clear some errors in the terminal
-
+        # Clear some errors in the terminal
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
         # Option with hiding window
-
-        #  Creating driver object and returning it
-        driver = webdriver.Chrome(options=options)
-        # ADD ALSO PATH TO WEBDRIVER
-
-        return driver
+        options = hide_browser_window(options)
+        return options
     except Exception as error:
-        print('error')
+        print(error)
 
 
-
-def get_menu():
+def create_webdriver(options):
     """
-     The function that is responsible for main menu of the program.
+    Create an object of the WebDriver class. Return driver object.
     """
-    pass
+    try:
+        # Creating driver object and returning it
+        return webdriver.Chrome(options=options)
+    except Exception:
+        raise Exception(errors.creatingWebDriver())
 
 
 def app():
@@ -55,13 +63,13 @@ def app():
     """
     try:
         files_manager()
-        set_settings()
-        get_menu()
-    except Exception:
-        print('dsadaasda')
+        options = set_options()
+        driver = create_webdriver(options)
+        get_menu(driver)
+    except Exception as error:
+        os.remove('chromedriver.exe')
+        print(f'{error}')
 
 
 if __name__ == '__main__':
-
     app()
-

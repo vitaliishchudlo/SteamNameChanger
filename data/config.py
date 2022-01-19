@@ -9,9 +9,14 @@ import os
 # Platform the program running on
 PLATFORM_RUNNING = platform.system()
 
-# WebDriver
-PATH_TO_WEBDRIVER = os.getcwd().replace('\\\\', '\\') + '\\chromedriver.exe'
-PATH_TO_WEBDRIVER_LINUX = os.getcwd() + '/chromedriver'
+# Path to WebDriver
+if PLATFORM_RUNNING == 'Linux':
+    PATH_TO_WEBDRIVER = os.getcwd() + '/chromedriver'
+elif PLATFORM_RUNNING == 'Windows':
+    PATH_TO_WEBDRIVER = os.getcwd().replace('\\\\', '\\') + '\\chromedriver.exe'
+else:
+    PATH_TO_WEBDRIVER = None
+
 
 
 # Links on pages:
