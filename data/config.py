@@ -23,7 +23,8 @@ else:
 
 
 # Menu chooses:
-
+MENU_CHOOSES = ['1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount', '4. Exit the program',
+                '\n\nSelect next action (enter the integer): \n']
 
 # Config.json file
 CONFIG_STRUCTURE_DICT = {
@@ -37,7 +38,8 @@ CONFIG_STRUCTURE_DICT = {
     },
     "chromeWindowSettings": {
         "hideWindow": False
-    }
+    },
+    "autoChangeTime": 60
 }
 
 # Menu choises

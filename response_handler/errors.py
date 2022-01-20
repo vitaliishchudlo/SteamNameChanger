@@ -24,3 +24,12 @@ def internetConnection():
 @error_handler
 def creatingWebDriver():
     return 'An error occurred while creating the WebDriver window'
+
+
+@error_handler
+def enteringInteger():
+    return 'Please enter a valid value'
+
+@error_handler
+def readingConfigJsonFile():
+    return f'An error occurred while opening the "config.json" file'
