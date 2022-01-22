@@ -4,11 +4,10 @@ import time
 
 from selenium import webdriver
 
-from data import PLATFORM_RUNNING, MENU_CHOOSES
+from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
-from scripts import create_config_file, create_chrome_webdriver, hide_browser_window
-
-from scripts import terminal
+from scripts import create_config_file, create_chrome_webdriver, hide_browser_window, \
+    terminal, setSteamAccountPassword, setSteamAccountUsername
 
 
 class Menu:
@@ -32,10 +31,6 @@ class Menu:
             print('Please enter a valid value')
             time.sleep(2.5)
             self.display_menu()
-            # raise ValueError(errors.enteringInteger())
-
-
-
 
     def menu(self):
         """
@@ -45,19 +40,58 @@ class Menu:
 
         # Start the program
         if user_choice == 1:
+            # Check if is existing account in the config.json
+            # If OK, open the Driver and navigate to the steam login page
+            # Driver insert needed information
+            # Driver trying to log in, if failed - go to the menu and say about it (bad password or login)
+            # If OK, driver checks what type of SteamGuard code is sending (Mail or PhoneApp)
+            # Asked the confirmation code and insert it to the input field
+            # Checks if the confirmation code true if no - repeat it
+            # Going to the profile and taking the ID code, generating the edit page link
+            # Starting changing the nicknames
             pass
-        # Change nicknames set
+        # Change nicknames set [UnWorkable now]
         elif user_choice == 2:
             pass
         # Manage SteamAccount
         elif user_choice == 3:
-            pass
+            ManageMenu(self.driver).manage_account()
         # Exit the program
         elif user_choice == 4:
             terminal.display_exit()
             sys.exit()
         else:
             self.menu()
+
+
+class ManageMenu(Menu):
+    def __init__(self, driver):
+        super().__init__(driver)
+
+    def manage_account(self):
+        try:
+            terminal.display_manage_account()
+            print(*MA_CHOOSES)
+            try:
+                user_choice = int(input('>>> '))
+                if user_choice == 1:
+                    username = input(f'{MA_ENTER_USERNAME}')
+                    setSteamAccountUsername(username)
+                    password = input(f'{MA_ENTER_PASSWORD}')
+                    setSteamAccountPassword(password)
+                    self.menu()
+                elif user_choice == 2:
+                    self.menu()
+                else:
+                    raise ValueError
+            except ValueError:
+                terminal.clear()
+                print('Please enter a valid value')
+                time.sleep(2)
+                self.manage_account()
+
+        except Exception as err:
+            print(f'ERROR {err}')
 
 
 def files_manager():

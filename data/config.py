@@ -26,6 +26,10 @@ else:
 MENU_CHOOSES = ['1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount', '4. Exit the program',
                 '\n\nSelect next action (enter the integer): \n']
 
+MA_CHOOSES = ['1. Sign in to the new Steam account\n2. Return to the main menu\n\n']
+MA_ENTER_USERNAME = 'Enter the username: \n>>> '
+MA_ENTER_PASSWORD = 'Enter the password: \n>>> '
+
 # Config.json file
 CONFIG_STRUCTURE_DICT = {
     "userdata": {

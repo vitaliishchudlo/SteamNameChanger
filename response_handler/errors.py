@@ -33,3 +33,8 @@ def enteringInteger():
 @error_handler
 def readingConfigJsonFile():
     return f'An error occurred while opening the "config.json" file'
+
+
+@error_handler
+def writingConfigJsonFile():
+    return f'An error occurred while writing the "config.json" file'
