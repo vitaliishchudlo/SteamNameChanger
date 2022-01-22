@@ -20,6 +20,8 @@ else:
 
 
 # Links on pages:
+AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
+
 
 
 # Menu chooses:

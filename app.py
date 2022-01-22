@@ -4,10 +4,12 @@ import time
 
 from selenium import webdriver
 
+from api_steam import authorize_user
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
 from scripts import create_config_file, create_chrome_webdriver, hide_browser_window, \
-    terminal, setSteamAccountPassword, setSteamAccountUsername
+    terminal, setSteamAccountPassword, setSteamAccountUsername, checkSteamAccountPassword, checkSteamAccountUsername, \
+    checkNicknamesSetEmpty
 
 
 class Menu:
@@ -37,13 +39,35 @@ class Menu:
         The function which shall to manage the choices of the user and to run all the chosen functionality.
         """
         user_choice = self.display_menu()
-
         # Start the program
         if user_choice == 1:
-            # Check if is existing account in the config.json
+            terminal.clear()
+            print('Starting the program...')
+
+            # Check if it is existing account in the config.json
+            if not checkSteamAccountUsername() or not checkSteamAccountPassword():
+                import ipdb; ipdb.set_trace()
+                terminal.display_sign_into_account_empty()
+                self.menu()
+
+            # Check if it is existing NickNamesSet in the config.json
+            if not checkNicknamesSetEmpty():
+                terminal.display_nicknames_set_empty()
+                self.menu()
+
+            print('Authorization...')
+
+            import ipdb; ipdb.set_trace()
+            # Trying to authorize
+            if not authorize_user(self.driver):
+                raise Exception(errors.authorizing_user())
+
+            print('Authorization success')
+
             # If OK, open the Driver and navigate to the steam login page
             # Driver insert needed information
             # Driver trying to log in, if failed - go to the menu and say about it (bad password or login)
+
             # If OK, driver checks what type of SteamGuard code is sending (Mail or PhoneApp)
             # Asked the confirmation code and insert it to the input field
             # Checks if the confirmation code true if no - repeat it
@@ -55,18 +79,12 @@ class Menu:
             pass
         # Manage SteamAccount
         elif user_choice == 3:
-            ManageMenu(self.driver).manage_account()
+            self.manage_account()
         # Exit the program
         elif user_choice == 4:
-            terminal.display_exit()
-            sys.exit()
+            self.exit_program()
         else:
             self.menu()
-
-
-class ManageMenu(Menu):
-    def __init__(self, driver):
-        super().__init__(driver)
 
     def manage_account(self):
         try:
@@ -79,6 +97,7 @@ class ManageMenu(Menu):
                     setSteamAccountUsername(username)
                     password = input(f'{MA_ENTER_PASSWORD}')
                     setSteamAccountPassword(password)
+                    terminal.display_success_account(username)
                     self.menu()
                 elif user_choice == 2:
                     self.menu()
@@ -87,11 +106,16 @@ class ManageMenu(Menu):
             except ValueError:
                 terminal.clear()
                 print('Please enter a valid value')
-                time.sleep(2)
+                time.sleep(1.5)
                 self.manage_account()
 
         except Exception as err:
             print(f'ERROR {err}')
+
+    @staticmethod
+    def exit_program():
+        terminal.display_exit()
+        sys.exit()
 
 
 def files_manager():
