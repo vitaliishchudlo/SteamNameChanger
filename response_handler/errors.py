@@ -1,6 +1,6 @@
 def error_handler(func):
     def wrapper():
-        return "[Error]: There were some errors when starting the program\n" \
+        return "[Error]: There were some errors while the program was running\n" \
                f"[Reason]: {func()}"
 
     return wrapper
@@ -44,3 +44,13 @@ def writingConfigJsonFile():
 @error_handler
 def authorizing_user():
     return f'Bad authorization'
+
+
+@error_handler
+def bad_credentials():
+    return f'Your username or password is incorrect'
+
+
+@error_handler
+def bad_steam_guard_code():
+    return 'Your SteamGuard code is incorrect'

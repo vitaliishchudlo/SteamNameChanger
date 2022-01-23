@@ -38,42 +38,30 @@ class Menu:
         """
         The function which shall to manage the choices of the user and to run all the chosen functionality.
         """
+        user_choice = ''
         user_choice = self.display_menu()
         # Start the program
         if user_choice == 1:
             terminal.clear()
             print('Starting the program...')
-
             # Check if it is existing account in the config.json
             if not checkSteamAccountUsername() or not checkSteamAccountPassword():
-                import ipdb; ipdb.set_trace()
                 terminal.display_sign_into_account_empty()
                 self.menu()
-
             # Check if it is existing NickNamesSet in the config.json
             if not checkNicknamesSetEmpty():
                 terminal.display_nicknames_set_empty()
                 self.menu()
-
             print('Authorization...')
-
-            import ipdb; ipdb.set_trace()
             # Trying to authorize
-            if not authorize_user(self.driver):
-                raise Exception(errors.authorizing_user())
-
+            authorize_user(self.driver)
+            # if not authorize_user(self.driver):
+            #     raise Exception(errors.authorizing_user())
             print('Authorization success')
 
-            # If OK, open the Driver and navigate to the steam login page
-            # Driver insert needed information
-            # Driver trying to log in, if failed - go to the menu and say about it (bad password or login)
+            import ipdb; ipdb.set_trace()
 
-            # If OK, driver checks what type of SteamGuard code is sending (Mail or PhoneApp)
-            # Asked the confirmation code and insert it to the input field
-            # Checks if the confirmation code true if no - repeat it
-            # Going to the profile and taking the ID code, generating the edit page link
-            # Starting changing the nicknames
-            pass
+
         # Change nicknames set [UnWorkable now]
         elif user_choice == 2:
             pass
@@ -108,9 +96,8 @@ class Menu:
                 print('Please enter a valid value')
                 time.sleep(1.5)
                 self.manage_account()
-
         except Exception as err:
-            print(f'ERROR {err}')
+            print(err)
 
     @staticmethod
     def exit_program():
