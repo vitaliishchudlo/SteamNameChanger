@@ -1,6 +1,12 @@
+import json
+from data import config
+
 # Create config.json file
 def create_config_file():
-    pass
+    with open('config.json', 'w') as file:
+        file.write(config.CONFIG_STRUCTURE_DICT)
+
+
 
 
 # Download chrome webdriver file

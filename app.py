@@ -60,9 +60,6 @@ class Menu:
             #     raise Exception(errors.authorizing_user())
             print('Authorization success')
 
-            import ipdb;
-            ipdb.set_trace()
-
 
         # Change nicknames set [UnWorkable now]
         elif user_choice == 2:
