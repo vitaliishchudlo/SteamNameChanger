@@ -7,9 +7,10 @@ from selenium import webdriver
 from api_steam import authorize_user
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
-from scripts import create_config_file, create_chrome_webdriver, hide_browser_window, \
-    terminal, setSteamAccountPassword, setSteamAccountUsername, checkSteamAccountPassword, checkSteamAccountUsername, \
-    checkNicknamesSetEmpty
+from scripts importhide_browser_window, terminal, setSteamAccountPassword, setSteamAccountUsername, checkSteamAccountPassword,
+        checkSteamAccountUsername,checkNicknamesSetEmpty
+
+from scripts import files_managing, webdriver_options
 
 
 class Menu:
@@ -112,14 +113,14 @@ def files_manager():
     """
     # Create config file with all default configurations of the program
     if not os.path.isfile('config.json'):
-        create_config_file()
+        files_managing.create_config_file()
     #  Create chrome webdriver file
     if PLATFORM_RUNNING == 'Linux':
         if not os.path.isfile('chromedriver'):
-            create_chrome_webdriver('/chromedriver_linux64.zip')
+            files_managing.create_chrome_webdriver('/chromedriver_linux64.zip')
     elif PLATFORM_RUNNING == 'Windows':
         if not os.path.isfile('chromedriver.exe'):
-            create_chrome_webdriver('/chromedriver_win32.zip')
+            files_managing.create_chrome_webdriver('/chromedriver_win32.zip')
     else:
         raise Exception(errors.platformRunning())
 
@@ -135,10 +136,10 @@ def set_options():
         # Clear some errors in the terminal
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
         # Option with hiding window
-        options = hide_browser_window(options)
+        options = webdriver_options.hide_browser_window(options)
         return options
-    except Exception as error:
-        print(error)
+    except Exception:
+        raise Exception(errors.setting_options_webdriver())
 
 
 def create_webdriver(options):

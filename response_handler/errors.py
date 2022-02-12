@@ -54,3 +54,7 @@ def bad_credentials():
 @error_handler
 def bad_steam_guard_code():
     return 'Your SteamGuard code is incorrect'
+
+
+def setting_options_webdriver():
+    return 'An error occured while trying to set settings to the window of the browser'

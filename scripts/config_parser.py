@@ -3,10 +3,11 @@
 
 
 def getSteamAccountUsername():
+    pass
 
 
 
 def getSteamAccountPassword():
+    pass
 
 
-def clear
