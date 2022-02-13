@@ -13,7 +13,6 @@ def clear():
         os.system('cls')
 
 
-
 def get_columns_number():
     number_clm = shutil.get_terminal_size().columns
     return number_clm
@@ -86,14 +85,14 @@ def display_success_account(username):
 def display_sign_into_account_empty():
     clear()
     clm = get_columns_number()
-    print('The username or login is invalid'.center(clm) + 'Please, sign in to your Steam Account again'.center(clm))
+    print('The username or password is invalid'.center(clm) + 'Please, sign in to your Steam Account again'.center(clm))
     time.sleep(3)
 
 
 def display_nicknames_set_empty():
     clear()
     clm = get_columns_number()
-    print('\n[ERROR]: Nicknames set is empty\nPlease, create Nicknames set'.center(clm))
+    print('Nicknames set is empty'.center(clm) + 'Please, create Nicknames set'.center(clm))
     time.sleep(1.5)
 
 

@@ -110,7 +110,7 @@ def checkSteamAccountPassword():
 def checkNicknamesSetEmpty():
     try:
         file_json = getConfigJson()
-        if not len(file_json["nickNamesManagement"]["nickNamesForChange"]) <= 2:
+        if len(file_json["nickNamesManagement"]["nickNamesForChange"]) < 2:
             return False
         return True
     except Exception:

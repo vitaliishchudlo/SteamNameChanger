@@ -4,11 +4,11 @@ import time
 
 from selenium import webdriver
 
-from steam_api import authorize_user
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
 from scripts import config_json_func as conf_json
 from scripts import files_managing, webdriver_options, terminal
+from steam_api import authorize_user
 
 
 class Menu:
@@ -157,6 +157,7 @@ def app():
         driver = create_webdriver(options)
         Menu(driver).menu()
     except Exception as error:
+        driver.close()
         print(f'{error}')
 
 

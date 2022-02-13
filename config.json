@@ -1,10 +1,10 @@
 {
     "userdata": {
-        "username": "",
-        "password": ""
+        "username": "whkqq121",
+        "password": "Passwordthebestever2021\\"
     },
     "nickNamesManagement": {
-        "nickNamesForChange": [],
+        "nickNamesForChange": ["first", "second"],
         "lastNickName": null
     },
     "chromeWindowSettings": {

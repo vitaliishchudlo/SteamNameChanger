@@ -6,14 +6,15 @@ from data import AUTHORIZATION_LINK
 from response_handler import errors
 from scripts import config_json_func as conf_json
 from scripts import terminal
-
+from selenium.webdriver.common.keys import Keys
 
 def steam_guard_auth(driver, steam_guard_code, type_auth):
     # Mobile auth
     if type_auth == 'mobile':
         steam_guard_input_line = driver.find_element(By.ID, 'twofactorcode_entry')
         steam_guard_input_line.send_keys(steam_guard_code)
-        driver.find_element(By.CLASS_NAME, 'auth_button leftbtn').click()
+        steam_guard_input_line.send_keys(Keys.ENTER)
+        # driver.find_element(By.CLASS_NAME, 'auth_button.leftbtn').click()
         if driver.current_url == 'https://store.steampowered.com/':
             return True
         return False
@@ -21,9 +22,13 @@ def steam_guard_auth(driver, steam_guard_code, type_auth):
     else:
         steam_guard_input_line = driver.find_element(By.ID, 'authcode')
         steam_guard_input_line.send_keys(steam_guard_code)
-        if driver.find_element(By.CLASS_NAME, 'auth_icon.auth_icon_unlock').is_displayed():
-            return True
-        return False
+        steam_guard_input_line.send_keys(Keys.ENTER)
+        # driver.find_element(By.CLASS_NAME, 'auth_button.leftbtn').click()
+        try:
+            driver.find_element(By.CLASS_NAME, 'auth_icon.auth_icon_unlock')
+        except Exception:
+            return False
+        return True
 
 
 def check_type_auth(driver):
@@ -41,7 +46,7 @@ def authorize_user(driver):
     driver.find_element(By.NAME, 'username').send_keys(conf_json.getSteamAccountUsername())
     driver.find_element(By.NAME, 'password').send_keys(conf_json.getSteamAccountPassword())
     driver.find_element(By.CSS_SELECTOR, '.btn_blue_steamui.btn_medium.login_btn').click()
-    time.sleep(10.5)
+    time.sleep(2.2)
 
     # Check if the Steam login and password is correct
     try:
