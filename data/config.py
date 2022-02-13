@@ -22,8 +22,8 @@ else:
 
 # Links on pages:
 CHROMEDRIVER_VERSION_LINK = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
-
-
+GET_STEAM_ID_LINK = 'https://store.steampowered.com/account/'
+STEAM_PROFILE_LINK = 'https://steamcommunity.com/profiles/'
 AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
 
 

@@ -8,7 +8,7 @@ from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOO
 from response_handler import errors
 from scripts import config_json_func as conf_json
 from scripts import files_managing, webdriver_options, terminal
-from steam_api import authorize_user
+from steam_api import authorize_user, open_browser_pages, name_changer
 
 
 class Menu:
@@ -53,9 +53,15 @@ class Menu:
             print('Authorization...')
             # Trying to authorize
             authorize_user(self.driver)
-            # if not authorize_user(self.driver):
-            #     raise Exception(errors.authorizing_user())
+            time.sleep(2.5)
             print('Authorization success')
+            print('Opening edit page...')
+            open_browser_pages.get_edit_page(self.driver)
+            print('Ready to changing name')
+            name_changer.change_name(self.driver, )
+
+
+
 
 
         # Change nicknames set [UnWorkable now]

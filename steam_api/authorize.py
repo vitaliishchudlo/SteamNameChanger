@@ -1,12 +1,13 @@
 import time
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 from data import AUTHORIZATION_LINK
 from response_handler import errors
 from scripts import config_json_func as conf_json
 from scripts import terminal
-from selenium.webdriver.common.keys import Keys
+
 
 def steam_guard_auth(driver, steam_guard_code, type_auth):
     # Mobile auth
@@ -15,20 +16,22 @@ def steam_guard_auth(driver, steam_guard_code, type_auth):
         steam_guard_input_line.send_keys(steam_guard_code)
         steam_guard_input_line.send_keys(Keys.ENTER)
         # driver.find_element(By.CLASS_NAME, 'auth_button.leftbtn').click()
+        time.sleep(2.2)
         if driver.current_url == 'https://store.steampowered.com/':
             return True
-        return False
+        raise Exception(errors.bad_steam_guard_code())
     # Email auth
     else:
         steam_guard_input_line = driver.find_element(By.ID, 'authcode')
         steam_guard_input_line.send_keys(steam_guard_code)
         steam_guard_input_line.send_keys(Keys.ENTER)
         # driver.find_element(By.CLASS_NAME, 'auth_button.leftbtn').click()
+        time.sleep(2.2)
         try:
             driver.find_element(By.CLASS_NAME, 'auth_icon.auth_icon_unlock')
+            return True
         except Exception:
-            return False
-        return True
+            raise Exception(errors.bad_steam_guard_code())
 
 
 def check_type_auth(driver):
@@ -55,9 +58,7 @@ def authorize_user(driver):
         STEAM_GUARD_CODE = input('Please, input your SteamGuard code:\n>>> ').upper()
         print('\n\nYOUR STEAM GUARD CODE: ', STEAM_GUARD_CODE, '\n\n')
         type_auth = check_type_auth(driver)
-        if not steam_guard_auth(driver, STEAM_GUARD_CODE, type_auth):
-            terminal.clear()
-            raise Exception(errors.bad_steam_guard_code())
+        steam_guard_auth(driver, STEAM_GUARD_CODE, type_auth)
         return True
     except:
         terminal.clear()

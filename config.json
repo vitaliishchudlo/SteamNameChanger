@@ -1,14 +1,17 @@
 {
     "userdata": {
-        "username": "whkqq121",
-        "password": "Passwordthebestever2021\\"
+        "username": "nightexpress28",
+        "password": "Vitaliy09122804\\"
     },
     "nickNamesManagement": {
-        "nickNamesForChange": ["first", "second"],
+        "nickNamesForChange": [
+            "first",
+            "second"
+        ],
         "lastNickName": null
     },
     "chromeWindowSettings": {
         "hideWindow": false
     },
-    "autoChangeTime": 60
+    "autoChangeTime": 10
 }
