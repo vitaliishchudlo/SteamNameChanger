@@ -19,7 +19,11 @@ else:
 
 
 
+
 # Links on pages:
+CHROMEDRIVER_VERSION_LINK = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
+
+
 AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
 
 

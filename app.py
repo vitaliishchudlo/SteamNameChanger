@@ -4,13 +4,11 @@ import time
 
 from selenium import webdriver
 
-from api_steam import authorize_user
+from steam_api import authorize_user
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
-from scripts importhide_browser_window, terminal, setSteamAccountPassword, setSteamAccountUsername, checkSteamAccountPassword,
-        checkSteamAccountUsername,checkNicknamesSetEmpty
-
-from scripts import files_managing, webdriver_options
+from scripts import config_json_func as conf_json
+from scripts import files_managing, webdriver_options, terminal
 
 
 class Menu:
@@ -39,18 +37,17 @@ class Menu:
         """
         The function which shall to manage the choices of the user and to run all the chosen functionality.
         """
-        user_choice = ''
         user_choice = self.display_menu()
         # Start the program
         if user_choice == 1:
             terminal.clear()
             print('Starting the program...')
             # Check if it is existing account in the config.json
-            if not checkSteamAccountUsername() or not checkSteamAccountPassword():
+            if not conf_json.checkSteamAccountUsername() or not conf_json.checkSteamAccountPassword():
                 terminal.display_sign_into_account_empty()
                 self.menu()
             # Check if it is existing NickNamesSet in the config.json
-            if not checkNicknamesSetEmpty():
+            if not conf_json.checkNicknamesSetEmpty():
                 terminal.display_nicknames_set_empty()
                 self.menu()
             print('Authorization...')
@@ -81,9 +78,9 @@ class Menu:
                 user_choice = int(input('>>> '))
                 if user_choice == 1:
                     username = input(f'{MA_ENTER_USERNAME}')
-                    setSteamAccountUsername(username)
+                    conf_json.setSteamAccountUsername(username)
                     password = input(f'{MA_ENTER_PASSWORD}')
-                    setSteamAccountPassword(password)
+                    conf_json.setSteamAccountPassword(password)
                     terminal.display_success_account(username)
                     self.menu()
                 elif user_choice == 2:

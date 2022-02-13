@@ -1,0 +1,14 @@
+{
+    "userdata": {
+        "username": "",
+        "password": ""
+    },
+    "nickNamesManagement": {
+        "nickNamesForChange": [],
+        "lastNickName": null
+    },
+    "chromeWindowSettings": {
+        "hideWindow": false
+    },
+    "autoChangeTime": 60
+}

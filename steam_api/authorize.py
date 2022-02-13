@@ -4,7 +4,9 @@ from selenium.webdriver.common.by import By
 
 from data import AUTHORIZATION_LINK
 from response_handler import errors
-from scripts import getSteamAccountUsername, getSteamAccountPassword, clear
+from scripts import config_json_func as conf_json
+from scripts import terminal
+
 
 def steam_guard_auth(driver, steam_guard_code, type_auth):
     # Mobile auth
@@ -36,8 +38,8 @@ def check_type_auth(driver):
 
 def authorize_user(driver):
     driver.get(AUTHORIZATION_LINK)
-    driver.find_element(By.NAME, 'username').send_keys(getSteamAccountUsername())
-    driver.find_element(By.NAME, 'password').send_keys(getSteamAccountPassword())
+    driver.find_element(By.NAME, 'username').send_keys(conf_json.getSteamAccountUsername())
+    driver.find_element(By.NAME, 'password').send_keys(conf_json.getSteamAccountPassword())
     driver.find_element(By.CSS_SELECTOR, '.btn_blue_steamui.btn_medium.login_btn').click()
     time.sleep(10.5)
 
@@ -49,9 +51,9 @@ def authorize_user(driver):
         print('\n\nYOUR STEAM GUARD CODE: ', STEAM_GUARD_CODE, '\n\n')
         type_auth = check_type_auth(driver)
         if not steam_guard_auth(driver, STEAM_GUARD_CODE, type_auth):
-            clear()
+            terminal.clear()
             raise Exception(errors.bad_steam_guard_code())
         return True
     except:
-        clear()
+        terminal.clear()
         raise Exception(errors.bad_credentials())
