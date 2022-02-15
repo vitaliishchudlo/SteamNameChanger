@@ -148,7 +148,7 @@ def create_webdriver(options):
     """
     try:
         # Creating driver object and returning it
-        return webdriver.Chrome(options=options)
+        return webdriver.Chrome(executable_path='chromedriver',options=options)
     except Exception:
         raise Exception(errors.creatingWebDriver())
 
@@ -157,13 +157,13 @@ def app():
     """
     The main function, which responsible for starting the program and all managing it.
     """
+    driver = ''
     try:
         files_manager()
         options = set_options()
         driver = create_webdriver(options)
         Menu(driver).menu()
     except Exception as error:
-        driver.close()
         print(f'{error}')
 
 
