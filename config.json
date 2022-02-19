@@ -1,12 +1,12 @@
 {
     "userdata": {
-        "username": "nightexpress28",
-        "password": "Vitaliy09122804\\"
+        "username": "",
+        "password": ""
     },
     "nickNamesManagement": {
         "nickNamesForChange": [
-            "first",
-            "second"
+            "Example 1",
+            "Example 2"
         ],
         "lastNickName": null
     },
