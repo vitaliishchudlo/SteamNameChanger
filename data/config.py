@@ -1,6 +1,5 @@
-
-import platform
 import os
+import platform
 
 # Name of the program
 # Version of the program
@@ -17,19 +16,15 @@ elif PLATFORM_RUNNING == 'Windows':
 else:
     PATH_TO_WEBDRIVER = None
 
-
-
-
 # Links on pages:
 CHROMEDRIVER_VERSION_LINK = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
 GET_STEAM_ID_LINK = 'https://store.steampowered.com/account/'
 STEAM_PROFILE_LINK = 'https://steamcommunity.com/profiles/'
 AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
 
-
-
 # Menu chooses:
-MENU_CHOOSES = ['1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount', '4. Exit the program',
+MENU_CHOOSES = ['1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount',
+                '4. Exit the program',
                 '\n\nSelect next action (enter the integer): \n']
 
 MA_CHOOSES = ['1. Sign in to the new Steam account\n2. Return to the main menu\n\n']
@@ -46,10 +41,13 @@ CONFIG_STRUCTURE_DICT = {
         "nickNamesForChange": [],
         "lastNickName": None
     },
+    "autoChangeTime": 60,
+    "autoChangeType": "developer",
+    "_autoChangeType": "random_list",
+    "__autoChangeType": "ordinal_list",
     "chromeWindowSettings": {
-        "hideWindow": False
+        "hideWindow": True
     },
-    "autoChangeTime": 60
 }
 
 # Menu choises

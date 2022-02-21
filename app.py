@@ -58,11 +58,8 @@ class Menu:
             print('Opening edit page...')
             open_browser_pages.get_edit_page(self.driver)
             print('Ready to changing name')
-            name_changer.change_name(self.driver, )
-
-
-
-
+            name_changer.run_change_name(self.driver)
+            self.menu()
 
         # Change nicknames set [UnWorkable now]
         elif user_choice == 2:

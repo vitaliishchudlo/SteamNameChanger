@@ -56,5 +56,11 @@ def bad_steam_guard_code():
     return 'Your SteamGuard code is incorrect'
 
 
+@error_handler
 def setting_options_webdriver():
     return 'An error occured while trying to set settings to the window of the browser'
+
+
+@error_handler
+def while_changing_nickname():
+    return 'An error occured while changing the nickname'

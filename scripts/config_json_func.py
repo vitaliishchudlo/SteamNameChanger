@@ -57,6 +57,16 @@ def getAutoChangeTime():
         raise FileExistsError(errors.readingConfigJsonFile())
 
 
+def getAutoChangeType():
+    try:
+        with open('config.json', 'r') as file:
+            file_json = json.loads(file.read())
+            return file_json["autoChangeType"]
+    except Exception:
+        raise FileExistsError(errors.readingConfigJsonFile())
+
+
+
 """
 Set`s under
 """

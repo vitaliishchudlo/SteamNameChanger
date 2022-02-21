@@ -23,7 +23,6 @@ def create_chrome_webdriver(file_type):
         version = requests.get(config.CHROMEDRIVER_VERSION_LINK).text
         # Define the OS and build a download link for it
         chromedriver_link = f'https://chromedriver.storage.googleapis.com/{version}{file_type}'
-        import ipdb; ipdb.set_trace()
         # download the zip file using the url built above
         latest_driver_zip = wget.download(chromedriver_link)
         # extract the zip file

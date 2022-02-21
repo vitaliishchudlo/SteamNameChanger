@@ -10,8 +10,11 @@
         ],
         "lastNickName": null
     },
+    "autoChangeTime": 10,
+    "autoChangeType": "random_list",
+    "_autoChangeType": "developer",
+    "__autoChangeType": "ordinal_list",
     "chromeWindowSettings": {
-        "hideWindow": false
-    },
-    "autoChangeTime": 10
+        "hideWindow": true
+    }
 }
