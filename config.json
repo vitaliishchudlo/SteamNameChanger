@@ -1,7 +1,7 @@
 {
     "userdata": {
-        "username": "",
-        "password": ""
+        "username": "whkqq121",
+        "password": "Passwordthebestever2021\\"
     },
     "nickNamesManagement": {
         "nickNamesForChange": [
@@ -15,6 +15,7 @@
     "_autoChangeType": "developer",
     "__autoChangeType": "ordinal_list",
     "chromeWindowSettings": {
-        "hideWindow": true
+        "hideWindow": false
     }
 }
+

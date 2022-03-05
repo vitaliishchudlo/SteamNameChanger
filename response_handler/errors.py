@@ -64,3 +64,7 @@ def setting_options_webdriver():
 @error_handler
 def while_changing_nickname():
     return 'An error occured while changing the nickname'
+
+@error_handler
+def update_chrome_browser():
+    return 'You need to update your Google Chrome browser'

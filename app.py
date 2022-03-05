@@ -3,6 +3,7 @@ import sys
 import time
 
 from selenium import webdriver
+from selenium.common.exceptions import SessionNotCreatedException
 
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
@@ -145,7 +146,22 @@ def create_webdriver(options):
     """
     try:
         # Creating driver object and returning it
-        return webdriver.Chrome(executable_path='chromedriver',options=options)
+        return webdriver.Chrome(executable_path='chromedriver', options=options)
+    except SessionNotCreatedException as err:
+        try:
+            start_version_needed = err.msg.find("Chrome version ") + 15
+            end_version_needed = err.msg.find("\nCurrent")
+            version_needed_response = err.msg[start_version_needed:end_version_needed]
+
+            start_current_version = err.msg.find('Current browser version is') + 26
+            end_current_version = err.msg.find(' with ')
+            version_current_response = err.msg[start_current_version:end_current_version]
+            print(f'Your browser version is: {version_current_response}\n'
+                  f'You need to upgrade to version: {version_needed_response}\n')
+        except Exception:
+            pass
+        finally:
+            raise Exception(errors.update_chrome_browser())
     except Exception:
         raise Exception(errors.creatingWebDriver())
 
@@ -159,6 +175,7 @@ def app():
         files_manager()
         options = set_options()
         driver = create_webdriver(options)
+        import ipdb;ipdb.set_trace()
         Menu(driver).menu()
     except Exception as error:
         print(f'{error}')
