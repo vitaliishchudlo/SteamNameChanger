@@ -65,9 +65,21 @@ class Menu:
             name_changer.run_change_name(self.driver)
             self.menu()
 
-        # Change nicknames set [UnWorkable now]
+        # Change nicknames set
         elif user_choice == 2:
-            pass
+            terminal.clear()
+            print(f'Your nicknames set is: {conf_json.getNickNamesSet()}\n')
+            print('1. Append nickname\n2. Delete nickname\n3. Clear nicknames set\n\n4. <- Back')
+            try:
+                user_choice = int(input('\n►►► '))
+            except ValueError:
+                terminal.clear()
+                print('Please enter a valid value')
+                time.sleep(2.5)
+                self.menu()
+
+
+
         # Manage SteamAccount
         elif user_choice == 3:
             self.manage_account()
@@ -101,6 +113,10 @@ class Menu:
                 self.manage_account()
         except Exception as err:
             print(err)
+
+    def changing_nicknames_set(self):
+        pass
+
 
     @staticmethod
     def exit_program():

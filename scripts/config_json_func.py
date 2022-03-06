@@ -36,18 +36,6 @@ def getSteamAccountPassword():
         raise FileExistsError(errors.readingConfigJsonFile())
 
 
-def getNickNamesSet():
-    try:
-        with open('config.json', 'r') as file:
-            file_json = json.loads(file.read())
-            nicknames_list = file_json["nickNamesManagement"]["nickNamesForChange"]
-            if len(nicknames_list) <= 0:
-                nicknames_list = 'N/A'
-            return nicknames_list
-    except Exception:
-        raise FileExistsError(errors.readingConfigJsonFile())
-
-
 def getAutoChangeTime():
     try:
         with open('config.json', 'r') as file:
@@ -64,6 +52,23 @@ def getAutoChangeType():
             return file_json["autoChangeType"]
     except Exception:
         raise FileExistsError(errors.readingConfigJsonFile())
+
+
+def getNickNamesSet():
+    try:
+        with open('config.json', 'r') as file:
+            file_json = json.loads(file.read())
+            nicknames_list = file_json["nickNamesManagement"]["nickNamesForChange"]
+            if len(nicknames_list) <= 0:
+                nicknames_list = 'N/A'
+            return nicknames_list
+    except Exception:
+        raise FileExistsError(errors.readingConfigJsonFile())
+
+def manageNickNamesSet(clear=None, append=None, remove=None):
+    pass
+
+
 
 
 """
