@@ -20,25 +20,27 @@ def get_columns_number():
 
 def display_header():
     clm = get_columns_number()
-    # print('=' * clm * 2)
-    print('☁ ' * clm)
+    print('■ ' * (clm // 2))
     print('S T E A M   N A M E   C H A N G E R'.center(clm))
     print('v. 2.0    by Vitalii Shchudlo'.rjust(clm) + '(NightExpress)'.rjust(clm))
-    print('☁ ' * clm)
-    # print('=' * clm * 2)
+    print('■ ' * (clm // 2))
+    # print('☁ ' * clm)
 
 
 def display_user_info():
-    # clm = get_columns_number()
+    clm = get_columns_number()
     username = conf_json.getSteamAccountUsername()
     nicknames_set = conf_json.getNickNamesSet()
     auto_change_time = conf_json.getAutoChangeTime()
-    print(f'Profile information:\n\nSteamAccount: {username}')
-    if nicknames_set == 'N/A':
-        print(f'Nicknames for change: {nicknames_set}')
-    else:
-        print('Nicknames for change: ' + ', '.join(nicknames_set))
-    print(f'Auto change time: {auto_change_time} seconds\n')
+    if not nicknames_set == 'N/A':
+        nicknames_set = ", ".join(nicknames_set)
+    print(
+        f'Profile information:'.center(clm) +
+        '\n' +
+        f'   ● SteamAccount: {username}'.ljust(clm) +
+        f'   ● Nicknames for change: {nicknames_set}'.ljust(clm) +
+        f'   ● Auto change time: {auto_change_time} seconds\n'.ljust(clm)
+    )
 
 
 def display_footer():
@@ -47,7 +49,9 @@ def display_footer():
 
 
 def display_menu():
-    print(*MENU_CHOOSES, sep='\n')
+    clm = get_columns_number()
+    print('Main menu:'.center(clm))
+    print(*MENU_CHOOSES, sep='\n   ')
 
 
 def display_exit():

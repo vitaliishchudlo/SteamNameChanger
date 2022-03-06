@@ -23,9 +23,10 @@ STEAM_PROFILE_LINK = 'https://steamcommunity.com/profiles/'
 AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
 
 # Menu chooses:
-MENU_CHOOSES = ['1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount',
+
+MENU_CHOOSES = ['   1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount',
                 '4. Exit the program',
-                '\n\nSelect next action (enter the integer): \n']
+                '\n\n Select an action (1-4): \n']
 
 MA_CHOOSES = ['1. Sign in to the new Steam account\n2. Return to the main menu\n\n']
 MA_ENTER_USERNAME = 'Enter the username: \n>>> '
@@ -49,5 +50,3 @@ CONFIG_STRUCTURE_DICT = {
         "hideWindow": True
     },
 }
-
-# Menu choises

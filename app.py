@@ -27,7 +27,7 @@ class Menu:
         terminal.display_footer()
         terminal.display_menu()
         try:
-            user_choice = int(input('\n>>> '))
+            user_choice = int(input('\n►►► '))
             return user_choice
         except ValueError:
             terminal.clear()
