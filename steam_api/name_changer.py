@@ -14,7 +14,6 @@ def change_name_randomly(driver):
     print('Changing started...')
     while True:
         try:
-            import ipdb; ipdb.set_trace()
             global times, last_nickname
             input_line = driver.find_element(By.CLASS_NAME, 'DialogInput.DialogInputPlaceholder.DialogTextInputBase')
             submit_btn = driver.find_element(By.CLASS_NAME, 'DialogButton._DialogLayout.Primary.Focusable')

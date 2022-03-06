@@ -4,6 +4,7 @@ import time
 
 from selenium import webdriver
 from selenium.common.exceptions import SessionNotCreatedException
+from selenium.webdriver.chrome.service import Service
 
 from data import PLATFORM_RUNNING, MA_ENTER_PASSWORD, MA_ENTER_USERNAME, MA_CHOOSES
 from response_handler import errors
@@ -146,8 +147,8 @@ def create_webdriver(options):
     """
     try:
         # Creating driver object and returning it
-        
-        return webdriver.Chrome(executable_path='chromedriver', options=options)
+        service = Service(f'{os.getcwd()}/chromedriver')
+        return webdriver.Chrome(service=service, options=options)
     except SessionNotCreatedException as err:
         try:
             start_version_needed = err.msg.find("Chrome version ") + 15
