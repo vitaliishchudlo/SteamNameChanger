@@ -146,6 +146,7 @@ def create_webdriver(options):
     """
     try:
         # Creating driver object and returning it
+        
         return webdriver.Chrome(executable_path='chromedriver', options=options)
     except SessionNotCreatedException as err:
         try:
