@@ -175,7 +175,6 @@ def app():
         files_manager()
         options = set_options()
         driver = create_webdriver(options)
-        import ipdb;ipdb.set_trace()
         Menu(driver).menu()
     except Exception as error:
         print(f'{error}')

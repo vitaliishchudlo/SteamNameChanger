@@ -54,7 +54,7 @@ def authorize_user(driver):
     # Check if the Steam login and password is correct
     try:
         driver.find_element(By.CLASS_NAME, 'newmodal')
-        print('Username and password are correct\n')
+        print('Username and password are correct!\n')
         STEAM_GUARD_CODE = input('Please, input your SteamGuard code:\n>>> ').upper()
         print('\n\nYOUR STEAM GUARD CODE: ', STEAM_GUARD_CODE, '\n\n')
         type_auth = check_type_auth(driver)
