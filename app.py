@@ -56,6 +56,8 @@ class Menu:
             # Trying to authorize
             authorize_user(self.driver)
             time.sleep(2.5)
+            terminal.clear()
+            print('Press CTRL + C for exit the program\n')
             print('Authorization success')
             print('Opening edit page...')
             open_browser_pages.get_edit_page(self.driver)

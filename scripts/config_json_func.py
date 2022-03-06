@@ -66,7 +66,6 @@ def getAutoChangeType():
         raise FileExistsError(errors.readingConfigJsonFile())
 
 
-
 """
 Set`s under
 """

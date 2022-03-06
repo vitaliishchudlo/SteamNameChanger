@@ -24,7 +24,7 @@ AUTHORIZATION_LINK = 'https://store.steampowered.com/login/'
 
 # Menu chooses:
 
-MENU_CHOOSES = ['   1. Start the program', '2. Change nicknames set [UNWORKABLE]', '3. Manage SteamAccount',
+MENU_CHOOSES = ['   1. Start the program', '[UNWORKABLE] 2. Change nicknames set ', '3. Manage SteamAccount',
                 '4. Exit the program',
                 '\n\n Select an action (1-4): \n']
 
@@ -39,13 +39,17 @@ CONFIG_STRUCTURE_DICT = {
         "password": ""
     },
     "nickNamesManagement": {
-        "nickNamesForChange": [],
+        "nickNamesForChange": [
+            "Example 1",
+            "Example 2",
+            "Example 3"
+        ],
         "lastNickName": None
     },
-    "autoChangeTime": 60,
-    "autoChangeType": "developer",
+    "autoChangeTime": 115,
+    "autoChangeType": "ordinal_list",
     "_autoChangeType": "random_list",
-    "__autoChangeType": "ordinal_list",
+    "__autoChangeType": "developer",
     "chromeWindowSettings": {
         "hideWindow": True
     },

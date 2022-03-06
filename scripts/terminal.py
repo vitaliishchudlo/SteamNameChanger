@@ -45,7 +45,7 @@ def display_user_info():
 
 def display_footer():
     clm = get_columns_number()
-    print(('. ' * (clm // 2)).center(clm))
+    print(('ˇ ' * (clm // 2)).center(clm))
 
 
 def display_menu():
