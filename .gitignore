@@ -81,6 +81,16 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
+# # # # # # # # # # # # # # # # # # #
+#               CUSTOM              #
+# # # # # # # # # # # # # # # # # # #
+*ui/skeletons/ui_forms
+*ui/icons/icons_red
+*ui/icons/custom
+*ui/ui_forms
+
+
 chromedriver
 chromedriver.exe
 test.py

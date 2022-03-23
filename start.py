@@ -2,7 +2,7 @@ import sys
 
 from PyQt5 import QtWidgets
 
-from ui.clear import StartWindow
+from ui.forms.start_window import StartWindow
 
 
 def run():
