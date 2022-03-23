@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '../back_UP/ui/skeletons/ui_forms/waitauth.ui'
+# Form implementation generated from reading ui file 'ui/ui_forms/wait_auth.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -15,7 +15,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_WaitAuthWindow(object):
     def setupUi(self, WaitAuthWindow):
         WaitAuthWindow.setObjectName('WaitAuthWindow')
-        WaitAuthWindow.resize(664, 395)
+        WaitAuthWindow.resize(477, 163)
         WaitAuthWindow.setStyleSheet('')
         self.centralwidget = QtWidgets.QWidget(WaitAuthWindow)
         self.centralwidget.setStyleSheet('')
@@ -48,7 +48,7 @@ class Ui_WaitAuthWindow(object):
         self.label = QtWidgets.QLabel(self.frame_title)
         self.label.setStyleSheet("font: 75 11pt \"Ubuntu Mono\";")
         self.label.setObjectName('label')
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
         self.horizontalLayout_2.addWidget(self.frame_title)
         self.frame_btns = QtWidgets.QFrame(self.title_bar)
         self.frame_btns.setMaximumSize(QtCore.QSize(50, 16777215))
@@ -84,6 +84,7 @@ class Ui_WaitAuthWindow(object):
         self.body = QtWidgets.QFrame(self.centralwidget)
         self.body.setStyleSheet('QFrame {\n'
                                 '    border:none;\n'
+                                '    background-color: rgb(186, 189, 182);\n'
                                 '}\n'
                                 '')
         self.body.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -94,6 +95,7 @@ class Ui_WaitAuthWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName('verticalLayout_2')
         self.label_title = QtWidgets.QFrame(self.body)
+        self.label_title.setMaximumSize(QtCore.QSize(16777215, 50))
         self.label_title.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.label_title.setFrameShadow(QtWidgets.QFrame.Raised)
         self.label_title.setObjectName('label_title')
@@ -104,6 +106,10 @@ class Ui_WaitAuthWindow(object):
         self.gridLayout_2.addWidget(self.label_2, 0, 0, 1, 1)
         self.verticalLayout_2.addWidget(self.label_title)
         self.status = QtWidgets.QFrame(self.body)
+        self.status.setStyleSheet('QFrame {\n'
+                                  '    border:none;\n'
+                                  '}\n'
+                                  '')
         self.status.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.status.setFrameShadow(QtWidgets.QFrame.Raised)
         self.status.setObjectName('status')
@@ -115,14 +121,22 @@ class Ui_WaitAuthWindow(object):
         self.text.setFrameShadow(QtWidgets.QFrame.Raised)
         self.text.setObjectName('text')
         self.horizontalLayout.addWidget(self.text)
-        self.frame = QtWidgets.QFrame(self.status)
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName('frame')
-        self.label_gif = QtWidgets.QLabel(self.frame)
-        self.label_gif.setGeometry(QtCore.QRect(80, 80, 67, 17))
+        self.gif = QtWidgets.QFrame(self.status)
+        self.gif.setStyleSheet('QFrame {\n'
+                               '    border:none;\n'
+                               '\n'
+                               '}\n'
+                               '')
+        self.gif.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.gif.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.gif.setObjectName('gif')
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.gif)
+        self.gridLayout_3.setObjectName('gridLayout_3')
+        self.label_gif = QtWidgets.QLabel(self.gif)
         self.label_gif.setObjectName('label_gif')
-        self.horizontalLayout.addWidget(self.frame)
+        self.gridLayout_3.addWidget(
+            self.label_gif, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
+        self.horizontalLayout.addWidget(self.gif)
         self.right = QtWidgets.QFrame(self.status)
         self.right.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.right.setFrameShadow(QtWidgets.QFrame.Raised)
