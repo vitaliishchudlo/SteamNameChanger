@@ -10,8 +10,6 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
         super().__init__()
         self.setupUi(self)
 
-        self.waitauth_popup = WaitAuthPopUp(self)
-
         self.setWindowFlags(Qt.FramelessWindowHint)
 
         self.sign_in_btn.setDisabled(True)
@@ -36,6 +34,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
 
     def authorize(self):
         self.setDisabled(True)
+        self.waitauth_popup = WaitAuthPopUp(self)
         self.waitauth_popup.show()
 
     def combo_check(self):

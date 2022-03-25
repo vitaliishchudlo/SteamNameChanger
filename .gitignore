@@ -96,3 +96,5 @@ chromedriver
 chromedriver.exe
 test.py
 config.json
+
+geckodriver.log

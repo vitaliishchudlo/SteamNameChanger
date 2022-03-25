@@ -3,6 +3,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QMovie
 
 from ui.skeletons.wait_auth import Ui_WaitAuthWindow
+from web.driver.browser import Browser
 
 
 class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
@@ -10,9 +11,8 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
         super().__init__()
         self.setupUi(self)
 
-        self.prev = parent_window
-
         self.setWindowFlags(Qt.FramelessWindowHint)
+        self.parent_window = parent_window
 
         self.btn_close.clicked.connect(self.close)
 
@@ -24,6 +24,22 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
         self.label_gif.setMovie(self.loading)
 
         self.startAnimation()
+
+        self.check_authorization()
+
+        # self.browser = Browser()
+        # self.browser_thread = threading.Thread(target=self.browser.get_steam)
+        # self.browser_thread.start()
+
+    def check_authorization(self):
+        if not self.parent_window.combo_username.currentText() == 'Add a new account...':
+            # Logging into chooses account
+            pass
+        else:
+            self.browser = Browser()
+            self.browser.get_steam()
+            # Logging into a new account
+            pass
 
     def startAnimation(self):
         self.loading.start()
@@ -40,5 +56,6 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
         self.dragPos = event.globalPos()
 
     def close(self):
-        self.prev.setDisabled(False)
+        self.browser.quit()
+        self.parent_window.setDisabled(False)
         self.hide()
