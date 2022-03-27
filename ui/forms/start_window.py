@@ -1,3 +1,5 @@
+import os
+
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 
@@ -10,10 +12,14 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
         super().__init__()
         self.setupUi(self)
 
+        self.center()
+
         self.setWindowFlags(Qt.FramelessWindowHint)
 
         self.sign_in_btn.setDisabled(True)
         self.label_error.hide()
+
+        self.refresh_combo_box()
 
         self.btn_hide.clicked.connect(lambda: self.showMinimized())
         self.btn_close.clicked.connect(lambda: self.close())
@@ -41,3 +47,16 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
         if self.combo_username.currentText() == '':
             return self.sign_in_btn.setDisabled(True)
         return self.sign_in_btn.setDisabled(False)
+
+    def refresh_combo_box(self):
+        pklfiles = []
+        for file in os.listdir('web/cookies'):
+            pklfiles.append(file)
+        for pklfile in pklfiles:
+            self.combo_username.addItem(pklfile)
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())

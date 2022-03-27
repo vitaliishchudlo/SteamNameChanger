@@ -1,15 +1,30 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 login_page = 'https://store.steampowered.com/login/'
+account_page = 'https://store.steampowered.com/account/'
 
 
 class Browser:
     def __init__(self, hide=False):
         self.options = webdriver.FirefoxOptions()
+        self.options.add_argument('--no-startup-window')
         if hide:
             self.options.headless = True
         self.driver = webdriver.Firefox(options=self.options)
         self.driver.set_window_size(450, 650)
+
+    def auth_status(self):
+        try:
+            self.driver.get(account_page)
+            if bool(self.driver.find_element(By.CLASS_NAME, 'youraccount_steamid').text[10:]):
+                return True
+            return False
+        except Exception:
+            return False
+
+    def refresh(self):
+        self.driver.refresh()
 
     def get_steam(self):
         self.driver.get(login_page)

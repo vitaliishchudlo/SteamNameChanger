@@ -155,9 +155,7 @@ class Ui_WaitAuthWindow(object):
         WaitAuthWindow.setWindowTitle(
             _translate('WaitAuthWindow', 'MainWindow'))
         self.window_name.setText(_translate(
-            'WaitAuthWindow',
-            "<html><head/><body><p><span style=\" font-weight:600;\">Authorization</span></p></body></html>"))
+            'WaitAuthWindow', "<html><head/><body><p><span style=\" font-weight:600;\">Authorization</span></p></body></html>"))
         self.label_title.setText(_translate(
-            'WaitAuthWindow',
-            "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">You need to log in to your steam account</span></p></body></html>"))
+            'WaitAuthWindow', "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:600;\">You need to log in to your steam account</span></p></body></html>"))
         self.label_gif.setText(_translate('WaitAuthWindow', '.'))

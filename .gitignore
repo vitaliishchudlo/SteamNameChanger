@@ -98,3 +98,5 @@ test.py
 config.json
 
 geckodriver.log
+
+web/cookies/*
