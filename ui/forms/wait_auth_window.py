@@ -45,7 +45,6 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
             for cookie in cookies:
                 self.browser.driver.add_cookie(cookie)
             self.browser.refresh()
-
         else:
             self.browser = Browser()
             self.browser.get_steam()
