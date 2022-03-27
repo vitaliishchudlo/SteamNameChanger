@@ -85,6 +85,8 @@ fabric.properties
 # # # # # # # # # # # # # # # # # # #
 #               CUSTOM              #
 # # # # # # # # # # # # # # # # # # #
+
+web/cookies/*
 *ui/skeletons/ui_forms
 *ui/icons/icons_red
 *ui/icons/custom
@@ -98,5 +100,3 @@ test.py
 config.json
 
 geckodriver.log
-
-web/cookies/*
