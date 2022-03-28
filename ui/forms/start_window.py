@@ -51,7 +51,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
     def refresh_combo_box(self):
         pklfiles = []
         for file in os.listdir('web/cookies'):
-            pklfiles.append(file)
+            pklfiles.append(file[:-4])
         for pklfile in pklfiles:
             self.combo_username.addItem(pklfile)
 

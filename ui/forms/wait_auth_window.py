@@ -1,4 +1,3 @@
-import pickle
 import threading
 import time
 
@@ -7,18 +6,19 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QMovie
 from selenium.webdriver.common.by import By
 
+from ui.forms.main_window import MainWindow
 from ui.skeletons.wait_auth import Ui_WaitAuthWindow
 from web.driver.browser import Browser
 
 
 class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
-    def __init__(self, parent_window):
+    def __init__(self, previous_window):
         super().__init__()
         self.setupUi(self)
         self.center()
 
         self.setWindowFlags(Qt.FramelessWindowHint)
-        self.parent_window = parent_window
+        self.previous_window = previous_window
 
         self.btn_close.clicked.connect(self.close)
 
@@ -34,44 +34,75 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
         self.browser_thread = threading.Thread(target=self.check_authorization)
         self.browser_thread.start()
 
-    def check_authorization(self):
-        if not self.parent_window.combo_username.currentText() == 'Add a new account...':
-            username = self.parent_window.combo_username.currentText()
-            self.label_title_settext(
-                f'Authorization in the {username} account...')
-            self.browser = Browser(hide=False)
-            self.browser.get_steam()
-            cookies = pickle.load(open(f'web/cookies/{username}', 'rb'))
-            for cookie in cookies:
-                self.browser.driver.add_cookie(cookie)
-            self.browser.refresh()
+    def sign_in(self, account_name):
+        self.browser = Browser(hide=True)
+        self.browser.get_steam()
+        self.browser.load_cookies(account_name)
+        self.browser.refresh()
+        return bool(self.browser.auth_status())
+
+    def sign_up(self):
+        while self.browser.driver.current_url == 'https://store.steampowered.com/login/':
+            print('Waiting authorization...')
+            time.sleep(1)
+        self.label_title_settext('Checking your account...')
+        if not self.browser.driver.current_url == 'https://store.steampowered.com/':
+            print('User entered other page')
+            return self.close()
+        print('Trying to check that user is logged in')
+        if self.browser.auth_status():
+            self.label_title_settext('Successfully authorized')
+            self.label_gif.setPixmap(
+                QtGui.QPixmap('ui/icons/custom/done.png'))
+            return True
         else:
+            self.label_title_settext('ERROR')
+            self.label_gif.setPixmap(QtGui.QPixmap(
+                'ui/icons/custom/icons8-close.svg'))
+            time.sleep(3)
+            return False
+
+    def check_authorization(self):
+        # If it is sign up
+        if self.previous_window.combo_username.currentText() == 'Add a new account...':
             self.browser = Browser()
             self.browser.get_steam()
-            while self.browser.driver.current_url == 'https://store.steampowered.com/login/':
-                print('Waiting authorization...')
-                time.sleep(1)
-            self.label_title_settext('Checking your account...')
-            if not self.browser.driver.current_url == 'https://store.steampowered.com/':
-                print('Entered other page')
-                return self.close()
-            print('Trying to check that u logged in')
-            if self.browser.auth_status():
-                self.label_title_settext('Successfully authorized')
-                self.label_gif.setPixmap(
-                    QtGui.QPixmap('ui/icons/custom/done.png'))
-            else:
-                self.label_title_settext('ERROR')
-                self.label_gif.setPixmap(QtGui.QPixmap(
-                    'ui/icons/custom/icons8-close.svg'))
-                time.sleep(3)
+            if not self.sign_ip():
                 return self.close()
             account_name = self.browser.driver.find_element(
                 By.CLASS_NAME, 'pageheader.youraccount_pageheader').text
             account_name = account_name[account_name.find(' ') + 1:].lower()
-            pickle.dump(self.browser.driver.get_cookies(), open(
-                f'web/cookies/{account_name}.pkl', 'wb'))
-            self.close()
+            self.browser.save_cookies(account_name)
+            self.browser.driver.close()
+            self.label_title_settext('Please, wait....')
+            if not self.sign_in(account_name):
+                self.browser.driver.close()
+                self.previous_window.label_error.setText(
+                    f'Can`t sign in to account {account_name}')
+                return self.close()
+
+            return self.next_window()
+        # If it is sign in
+        account_name = self.previous_window.combo_username.currentText()
+        self.label_title_settext(
+            f'Authorization in the {account_name} account...')
+        self.browser = Browser(hide=True)
+        self.browser.get_steam()
+        self.browser.load_cookies(account_name)
+        self.browser.refresh()
+        if not self.browser.auth_status():
+            self.browser.driver.close()
+            self.browser = Browser()
+            self.browser.get_steam()
+            if not self.sign_up():
+                self.browser.driver.close()
+                self.previous_window.label_error.setText(
+                    f'Can`t sign in to account {account_name}')
+                return self.close()
+            self.browser.save_cookies(account_name)
+            self.browser.driver.close()
+            self.check_authorization()
+        return self.next_window()
 
     def startAnimation(self):
         self.loading.start()
@@ -87,9 +118,15 @@ class WaitAuthPopUp(QtWidgets.QMainWindow, Ui_WaitAuthWindow):
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
+    def next_window(self):
+        self.previous_window.hide()
+        self.main = MainWindow(self.browser)
+        self.main.show()
+        self.hide()
+
     def close(self):
         self.browser.quit()
-        self.parent_window.setDisabled(False)
+        self.previous_window.setDisabled(False)
         self.hide()
 
     def center(self):

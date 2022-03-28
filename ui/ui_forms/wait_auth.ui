@@ -86,10 +86,12 @@
           <item row="0" column="0" alignment="Qt::AlignLeft">
            <widget class="QLabel" name="window_name">
             <property name="styleSheet">
-             <string notr="true">font: 75 11pt &quot;Ubuntu Mono&quot;;</string>
+             <string notr="true">font: 75 11pt &quot;Ubuntu Mono&quot;;
+font: bold;
+</string>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Authorization&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>Authorization</string>
             </property>
            </widget>
           </item>
@@ -202,10 +204,16 @@ QPushButton:hover {
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
+          <item row="0" column="0" alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="label_title">
+            <property name="styleSheet">
+             <string notr="true">font: bold;
+font-size: 20px;
+height: 48px;
+width: 120px;</string>
+            </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;You need to log in to your steam account&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>You need to log in to your steam account</string>
             </property>
            </widget>
           </item>

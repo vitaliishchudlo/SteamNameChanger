@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>402</height>
+    <height>412</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -83,10 +83,12 @@
           <item row="0" column="0" alignment="Qt::AlignLeft">
            <widget class="QLabel" name="label">
             <property name="styleSheet">
-             <string notr="true">font: 75 11pt &quot;Ubuntu Mono&quot;;</string>
+             <string notr="true">font: 75 11pt &quot;Ubuntu Mono&quot;;
+font: bold;
+</string>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SteamNameChanger&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>SteamNameChanger</string>
             </property>
            </widget>
           </item>
@@ -232,10 +234,17 @@ QPushButton:hover {
        <property name="spacing">
         <number>0</number>
        </property>
-       <item row="0" column="0">
+       <item row="0" column="0" alignment="Qt::AlignHCenter">
         <widget class="QLabel" name="program_name">
+         <property name="styleSheet">
+          <string notr="true">font: bold;
+font-size: 36px;
+height: 48px;
+width: 120px;
+text-align: center;</string>
+         </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:600;&quot;&gt;STEAM NAME CHANGER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>SteamNameChanger</string>
          </property>
         </widget>
        </item>
@@ -502,7 +511,7 @@ QComboBox QAbstractItemView {
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>45</height>
+        <height>40</height>
        </size>
       </property>
       <property name="styleSheet">
