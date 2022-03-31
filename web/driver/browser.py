@@ -38,7 +38,12 @@ class Browser:
         cookies = pickle.load(open(f'web/cookies/{account_name}.pkl', 'rb'))
         for cookie in cookies:
             self.driver.add_cookie(cookie)
+        self.driver.refresh()
 
-    def save_cookies(self, account_name):
+    def save_cookies(self):
+        self.driver.get(account_page)
+        account_name = self.driver.find_element(
+            By.CLASS_NAME, 'pageheader.youraccount_pageheader').text
+        account_name = account_name[account_name.find(' ') + 1:].lower()
         pickle.dump(self.driver.get_cookies(), open(
             f'web/cookies/{account_name}.pkl', 'wb'))

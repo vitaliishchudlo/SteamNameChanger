@@ -100,3 +100,4 @@ test.py
 config.json
 
 geckodriver.log
+*geckodriver.log

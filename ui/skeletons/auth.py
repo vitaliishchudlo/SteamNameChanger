@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_StartWindow(object):
     def setupUi(self, StartWindow):
         StartWindow.setObjectName('StartWindow')
-        StartWindow.resize(500, 402)
+        StartWindow.resize(500, 412)
         self.centralwidget = QtWidgets.QWidget(StartWindow)
         self.centralwidget.setStyleSheet('background-color: rgb(56, 55, 52);')
         self.centralwidget.setObjectName('centralwidget')
@@ -26,7 +26,7 @@ class Ui_StartWindow(object):
         self.title_bar.setMaximumSize(QtCore.QSize(16777215, 40))
         self.title_bar.setStyleSheet('QFrame {\n'
                                      '    border:none;\n'
-                                     '    \n'
+                                     '\n'
                                      '    background-color: rgb(85, 87, 83);\n'
                                      '}\n'
                                      '')
@@ -44,7 +44,9 @@ class Ui_StartWindow(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_title)
         self.gridLayout_4.setObjectName('gridLayout_4')
         self.label = QtWidgets.QLabel(self.frame_title)
-        self.label.setStyleSheet("font: 75 11pt \"Ubuntu Mono\";")
+        self.label.setStyleSheet("font: 75 11pt \"Ubuntu Mono\";\n"
+                                 'font: bold;\n'
+                                 '')
         self.label.setObjectName('label')
         self.gridLayout_4.addWidget(
             self.label, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
@@ -67,7 +69,7 @@ class Ui_StartWindow(object):
                                     '    border-style: solid;\n'
                                     '    border-color: rgb(0, 0, 0);\n'
                                     '    border-width: 1px;\n'
-                                    '    \n'
+                                    '\n'
                                     '}\n'
                                     'QPushButton:hover {\n'
                                     '    background-color: rgb(196, 160, 0);\n'
@@ -117,8 +119,14 @@ class Ui_StartWindow(object):
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName('gridLayout')
         self.program_name = QtWidgets.QLabel(self.header)
+        self.program_name.setStyleSheet('font: bold;\n'
+                                        'font-size: 36px;\n'
+                                        'height: 48px;\n'
+                                        'width: 120px;\n'
+                                        'text-align: center;')
         self.program_name.setObjectName('program_name')
-        self.gridLayout.addWidget(self.program_name, 0, 0, 1, 1)
+        self.gridLayout.addWidget(
+            self.program_name, 0, 0, 1, 1, QtCore.Qt.AlignHCenter)
         self.verticalLayout.addWidget(self.header)
         self.main_body = QtWidgets.QFrame(self.centralwidget)
         self.main_body.setStyleSheet('QFrame {\n'
@@ -174,9 +182,13 @@ class Ui_StartWindow(object):
         self.verticalLayout_3.addWidget(self.label_sign_in)
         self.label_error = QtWidgets.QLabel(self.sign_in_form)
         self.label_error.setStyleSheet('border-width: 0px;\n'
+                                       'color: rgb(240, 14, 14);\n'
+                                       'font-weight: bold;\n'
                                        '')
+        self.label_error.setText('')
         self.label_error.setObjectName('label_error')
-        self.verticalLayout_3.addWidget(self.label_error)
+        self.verticalLayout_3.addWidget(
+            self.label_error, 0, QtCore.Qt.AlignHCenter)
         self.combo_username = QtWidgets.QComboBox(self.sign_in_form)
         self.combo_username.setStyleSheet('QComboBox {\n'
                                           '    border: 1px solid gray;\n'
@@ -264,7 +276,7 @@ class Ui_StartWindow(object):
         self.verticalLayout_2.addWidget(self.body)
         self.verticalLayout.addWidget(self.main_body)
         self.footer = QtWidgets.QFrame(self.centralwidget)
-        self.footer.setMaximumSize(QtCore.QSize(16777215, 45))
+        self.footer.setMaximumSize(QtCore.QSize(16777215, 40))
         self.footer.setStyleSheet('border:none')
         self.footer.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.footer.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -302,17 +314,12 @@ class Ui_StartWindow(object):
     def retranslateUi(self, StartWindow):
         _translate = QtCore.QCoreApplication.translate
         StartWindow.setWindowTitle(_translate('StartWindow', 'MainWindow'))
-        self.label.setText(_translate(
-            'StartWindow',
-            "<html><head/><body><p><span style=\" font-weight:600;\">SteamNameChanger</span><br/></p></body></html>"))
+        self.label.setText(_translate('StartWindow', 'SteamNameChanger'))
         self.program_name.setText(_translate(
-            'StartWindow',
-            "<html><head/><body><p align=\"center\"><span style=\" font-size:28pt; font-weight:600;\">STEAM NAME CHANGER</span></p></body></html>"))
+            'StartWindow', 'SteamNameChanger'))
         self.label_sign_in.setText(_translate(
             'StartWindow',
             "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
-        self.label_error.setText(_translate(
-            'StartWindow', "<html><head/><body><p align=\"center\"><br/></p></body></html>"))
         self.combo_username.setItemText(1, _translate(
             'StartWindow', 'Add a new account...'))
         self.sign_in_btn.setText(_translate('StartWindow', 'Sign in'))

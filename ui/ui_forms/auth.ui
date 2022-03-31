@@ -369,14 +369,16 @@ border: 0;
                   </property>
                  </widget>
                 </item>
-                <item>
+                <item alignment="Qt::AlignHCenter">
                  <widget class="QLabel" name="label_error">
                   <property name="styleSheet">
                    <string notr="true">border-width: 0px;
+color: rgb(240, 14, 14);
+font-weight: bold;
 </string>
                   </property>
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string/>
                   </property>
                  </widget>
                 </item>
