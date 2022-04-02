@@ -1,12 +1,11 @@
 import os
+import sys
 import threading
 import time
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-from selenium.webdriver.common.by import By
 
-from ui.forms.main_window import MainWindow
 from ui.skeletons.auth import Ui_StartWindow
 from web.driver.browser import Browser
 
@@ -31,7 +30,8 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
         self.combo_box_refresh()
 
         self.btn_hide.clicked.connect(lambda: self.showMinimized())
-        self.btn_close.clicked.connect(lambda: self.close())
+        self.btn_close.clicked.connect(lambda: sys.exit(-1))
+
         self.sign_in_btn.clicked.connect(self.authentication)
 
         self.combo_username.currentIndexChanged.connect(self.combo_box_check)
@@ -61,17 +61,17 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
             print('[ERROR]: User entered not Steam web page')
             self.user_auth_status = 'failed'
             self.return_auth_window('You entered not Steam page')
-            return
+            return False
         print('[INFO]: Trying to check that user is logged in')
         if not self.browser.auth_status():
             self.user_auth_status = 'failed'
             self.return_auth_window('You are not logged in')
-            return
+            return False
         else:
-            self.label_error_settext('Successfully authorized')
             self.user_auth_status = 'success'
             self.browser.save_cookies()
-            return
+            self.browser.quit()
+            return True
 
     def sign_in(self, account_name):
         """
@@ -82,60 +82,39 @@ class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
         self.browser.load_cookies(account_name)
         if not bool(self.browser.auth_status()):
             self.user_auth_status = 'failed'
-            return
+            self.return_auth_window('Bad cookies')
+            return False
         self.user_auth_status = 'success'
         self.browser.save_cookies()
-        return
+        return True
 
-    def start_authentication_thread(self, sign_in=None, account_name=None, sign_up=None):
-        if sign_in:
+    def start_auth_thread(self):
+        if self.combo_username.currentText() == 'Add a new account...':
+            self.browser_thread = threading.Thread(target=self.sign_up)
+            self.browser_thread.start()
+        else:
+            account_name = self.combo_username.currentText()
             self.browser_thread = threading.Thread(
                 target=self.sign_in, args=(account_name,))
             self.browser_thread.start()
-        if sign_up:
-            self.browser_thread = threading.Thread(target=self.sign_up)
-            self.browser_thread.start()
 
         while self.user_auth_status == 'pending':
+            print('Pending')
             time.sleep(1)
         if self.user_auth_status == 'success':
-            return True
-        return False
+            self.label_error_settext('Successfully authorized')
+            self.setDisabled(False)
 
     def authentication(self):
         """
         Check if user choose 'Add new account' or 'Account name'
         """
-        # Sign up
+        self.user_auth_status = 'pending'
+        self.auth_thread = threading.Thread(target=self.start_auth_thread)
+        self.auth_thread.start()
 
-        if self.isActiveWindow():
-            self.setVisible(False)
-
-        if self.combo_username.currentText() == 'Add a new account...':
-            if not self.start_authentication_thread(sign_up=True):
-                self.setVisible(True)
-                return self.label_error.setText('Can`t sign up')
-
-            self.browser.driver.get(account_page)
-            account_name = self.driver.find_element(
-                By.CLASS_NAME, 'pageheader.youraccount_pageheader').text
-            account_name = account_name[account_name.find(' ') + 1:].lower()
-            self.browser.quit()
-            self.browser = Browser(hide=True)
-            self.browser.get_steam()
-            self.browser.load_cookies(account_name)
-            # Next page
-        # Sign in
-        else:
-            account_name = self.combo_username.currentText()
-            if not self.start_authentication_thread(sign_in=True, account_name=account_name):
-                self.setVisible(True)
-                self.label_error_settext(
-                    f'Can`t sign in to {account_name}. Time expired')
-                return
-        self.main_window = MainWindow(account_name)
-        self.main_window.show()
-        self.close()
+        self.setDisabled(True)
+        self.label_error_settext('Loading...')
 
     def label_error_settext(self, message):
         try:
