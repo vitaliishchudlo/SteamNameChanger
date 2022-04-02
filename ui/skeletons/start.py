@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/ui_forms/main.ui'
+# Form implementation generated from reading ui file 'ui/skeletons/ui_forms/start.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName('MainWindow')
-        MainWindow.resize(332, 474)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_StartWin(object):
+    def setupUi(self, StartWin):
+        StartWin.setObjectName('StartWin')
+        StartWin.resize(332, 474)
+        self.centralwidget = QtWidgets.QWidget(StartWin)
         self.centralwidget.setStyleSheet('border: none;\n'
                                          'background-color: rgb(56, 55, 52);')
         self.centralwidget.setObjectName('centralwidget')
@@ -334,33 +334,32 @@ class Ui_MainWindow(object):
             self.labelauthor, 0, 0, 1, 1, QtCore.Qt.AlignRight)
         self.horizontalLayout_3.addWidget(self.author)
         self.verticalLayout.addWidget(self.footer)
-        MainWindow.setCentralWidget(self.centralwidget)
+        StartWin.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(StartWin)
+        QtCore.QMetaObject.connectSlotsByName(StartWin)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, StartWin):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate('MainWindow', 'MainWindow'))
-        self.label.setText(_translate('MainWindow', 'SteamNameChanger'))
-        self.label_username.setText(_translate('MainWindow', 'Username'))
-        self.label_3.setText(_translate('MainWindow', 'Interval (seconds):'))
+        StartWin.setWindowTitle(_translate('StartWin', 'MainWindow'))
+        self.label.setText(_translate('StartWin', 'SteamNameChanger'))
+        self.label_username.setText(_translate('StartWin', 'Username'))
+        self.label_3.setText(_translate('StartWin', 'Interval (seconds):'))
         self.comboBox.setItemText(0, _translate(
-            'MainWindow', '60 (not for match)'))
-        self.comboBox.setItemText(1, _translate('MainWindow', '120'))
-        self.comboBox.setItemText(2, _translate('MainWindow', '125'))
-        self.comboBox.setItemText(3, _translate('MainWindow', '130'))
-        self.comboBox.setItemText(4, _translate('MainWindow', '150'))
-        self.label_types.setText(_translate(
-            'MainWindow', 'Type of changing: '))
-        self.ordinal.setText(_translate('MainWindow', 'Ordinal'))
-        self.random.setText(_translate('MainWindow', 'Random'))
+            'StartWin', '60 (not for match)'))
+        self.comboBox.setItemText(1, _translate('StartWin', '120'))
+        self.comboBox.setItemText(2, _translate('StartWin', '125'))
+        self.comboBox.setItemText(3, _translate('StartWin', '130'))
+        self.comboBox.setItemText(4, _translate('StartWin', '150'))
+        self.label_types.setText(_translate('StartWin', 'Type of changing: '))
+        self.ordinal.setText(_translate('StartWin', 'Ordinal'))
+        self.random.setText(_translate('StartWin', 'Random'))
         self.nickname_set.setText(_translate(
-            'MainWindow', 'Nicknames set (through a comma):'))
-        self.nicknames_list.setPlainText(_translate('MainWindow', 'Example 1,\n'
-                                                                  'Example 2,\n'
-                                                                  'Example 3\n'
-                                                                  ''))
-        self.btn_start.setText(_translate('MainWindow', 'Start'))
-        self.labelversion.setText(_translate('MainWindow', 'v 1.0'))
-        self.labelauthor.setText(_translate('MainWindow', 'by NightExpress'))
+            'StartWin', 'Nicknames set (through a comma):'))
+        self.nicknames_list.setPlainText(_translate('StartWin', 'Example 1,\n'
+                                                                'Example 2,\n'
+                                                                'Example 3\n'
+                                                                ''))
+        self.btn_start.setText(_translate('StartWin', 'Start'))
+        self.labelversion.setText(_translate('StartWin', 'v 1.0'))
+        self.labelauthor.setText(_translate('StartWin', 'by NightExpress'))

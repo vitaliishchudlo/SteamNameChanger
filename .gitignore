@@ -91,7 +91,7 @@ web/cookies/*
 *ui/icons/icons_red
 *ui/icons/custom
 *ui/icons/
-*ui/ui_forms
+ui/skeletons/ui_forms
 
 
 chromedriver

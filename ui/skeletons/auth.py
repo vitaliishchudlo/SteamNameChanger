@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/ui_forms/auth.ui'
+# Form implementation generated from reading ui file 'ui/skeletons/ui_forms/auth.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_StartWindow(object):
-    def setupUi(self, StartWindow):
-        StartWindow.setObjectName('StartWindow')
-        StartWindow.resize(500, 412)
-        self.centralwidget = QtWidgets.QWidget(StartWindow)
+class Ui_AuthWin(object):
+    def setupUi(self, AuthWin):
+        AuthWin.setObjectName('AuthWin')
+        AuthWin.resize(500, 412)
+        self.centralwidget = QtWidgets.QWidget(AuthWin)
         self.centralwidget.setStyleSheet('background-color: rgb(56, 55, 52);')
         self.centralwidget.setObjectName('centralwidget')
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -306,23 +306,22 @@ class Ui_StartWindow(object):
         self.gridLayout_2.addWidget(self.label_author, 0, 0, 1, 1)
         self.horizontalLayout.addWidget(self.author)
         self.verticalLayout.addWidget(self.footer)
-        StartWindow.setCentralWidget(self.centralwidget)
+        AuthWin.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(StartWindow)
-        QtCore.QMetaObject.connectSlotsByName(StartWindow)
+        self.retranslateUi(AuthWin)
+        QtCore.QMetaObject.connectSlotsByName(AuthWin)
 
-    def retranslateUi(self, StartWindow):
+    def retranslateUi(self, AuthWin):
         _translate = QtCore.QCoreApplication.translate
-        StartWindow.setWindowTitle(_translate('StartWindow', 'MainWindow'))
-        self.label.setText(_translate('StartWindow', 'SteamNameChanger'))
-        self.program_name.setText(_translate(
-            'StartWindow', 'SteamNameChanger'))
+        AuthWin.setWindowTitle(_translate('AuthWin', 'MainWindow'))
+        self.label.setText(_translate('AuthWin', 'SteamNameChanger'))
+        self.program_name.setText(_translate('AuthWin', 'SteamNameChanger'))
         self.label_sign_in.setText(_translate(
-            'StartWindow',
+            'AuthWin',
             "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
-        self.combo_username.setItemText(1, _translate(
-            'StartWindow', 'Add a new account...'))
-        self.sign_in_btn.setText(_translate('StartWindow', 'Sign in'))
-        self.label_version.setText(_translate('StartWindow', 'v.1.0'))
+        self.combo_username.setItemText(
+            1, _translate('AuthWin', 'Add a new account...'))
+        self.sign_in_btn.setText(_translate('AuthWin', 'Sign in'))
+        self.label_version.setText(_translate('AuthWin', 'v.1.0'))
         self.label_author.setText(_translate(
-            'StartWindow', "<html><head/><body><p align=\"right\">by NightExpress</p></body></html>"))
+            'AuthWin', "<html><head/><body><p align=\"right\">by NightExpress</p></body></html>"))

@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets
 
-from ui.skeletons.main import Ui_MainWindow
+from ui.skeletons.start import Ui_StartWin
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_StartWin):
     def __init__(self, browser):
         super().__init__()
         self.setupUi(self)

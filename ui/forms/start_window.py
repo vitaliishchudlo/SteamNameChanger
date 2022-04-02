@@ -6,14 +6,14 @@ import time
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 
-from ui.skeletons.auth import Ui_StartWindow
+from ui.skeletons.auth import Ui_AuthWin
 from web.driver.browser import Browser
 
 login_page = 'https://store.steampowered.com/login/'
 account_page = 'https://store.steampowered.com/account/'
 
 
-class StartWindow(QtWidgets.QMainWindow, Ui_StartWindow):
+class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
