@@ -47,6 +47,31 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
+
+    def combo_box_check(self):
+        if self.combo_username.currentText() == '':
+            return self.sign_in_btn.setDisabled(True)
+        return self.sign_in_btn.setDisabled(False)
+
+    def combo_box_refresh(self):
+        pklfiles = []
+        for file in os.listdir('web/cookies'):
+            pklfiles.append(file[:-4])
+        for pklfile in pklfiles:
+            self.combo_username.addItem(pklfile)
+
+    def label_error_settext(self, message):
+        try:
+            self.label_error.setText(message)
+            self.label_error.setVisible(True)
+        except Exception:
+            return
+
     def sign_up(self):
         """
         Register a new account
@@ -88,6 +113,16 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         self.browser.save_cookies()
         return True
 
+    def return_auth_window(self, error_message=None):
+        if error_message:
+            try:
+                self.label_error.setText(error_message)
+                self.label_error.setVisible(True)
+            except Exception:
+                return
+        self.browser.quit()
+        self.setDisabled(False)
+
     def start_auth_thread(self):
         if self.combo_username.currentText() == 'Add a new account...':
             self.browser_thread = threading.Thread(target=self.sign_up)
@@ -99,7 +134,6 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
             self.browser_thread.start()
 
         while self.user_auth_status == 'pending':
-            print('Pending')
             time.sleep(1)
         if self.user_auth_status == 'success':
             self.label_error_settext('Successfully authorized')
@@ -115,38 +149,3 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
 
         self.setDisabled(True)
         self.label_error_settext('Loading...')
-
-    def label_error_settext(self, message):
-        try:
-            self.label_error.setText(message)
-            self.label_error.setVisible(True)
-        except Exception:
-            return
-
-    def return_auth_window(self, error_message=None):
-        if error_message:
-            try:
-                self.label_error.setText(error_message)
-                self.label_error.setVisible(True)
-            except Exception:
-                return
-        self.browser.quit()
-        self.setDisabled(False)
-
-    def combo_box_check(self):
-        if self.combo_username.currentText() == '':
-            return self.sign_in_btn.setDisabled(True)
-        return self.sign_in_btn.setDisabled(False)
-
-    def combo_box_refresh(self):
-        pklfiles = []
-        for file in os.listdir('web/cookies'):
-            pklfiles.append(file[:-4])
-        for pklfile in pklfiles:
-            self.combo_username.addItem(pklfile)
-
-    def center(self):
-        qr = self.frameGeometry()
-        cp = QtWidgets.QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
