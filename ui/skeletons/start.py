@@ -244,6 +244,7 @@ class Ui_StartWin(object):
                                    '    border-radius: 8px;\n'
                                    'background-color: rgb(85, 87, 83);\n'
                                    '')
+        self.ordinal.setChecked(True)
         self.ordinal.setObjectName('ordinal')
         self.horizontalLayout_5.addWidget(self.ordinal)
         self.random = QtWidgets.QRadioButton(self.types)
@@ -345,8 +346,7 @@ class Ui_StartWin(object):
         self.label.setText(_translate('StartWin', 'SteamNameChanger'))
         self.label_username.setText(_translate('StartWin', 'Username'))
         self.label_3.setText(_translate('StartWin', 'Interval (seconds):'))
-        self.comboBox.setItemText(0, _translate(
-            'StartWin', '60 (not for match)'))
+        self.comboBox.setItemText(0, _translate('StartWin', '60'))
         self.comboBox.setItemText(1, _translate('StartWin', '120'))
         self.comboBox.setItemText(2, _translate('StartWin', '125'))
         self.comboBox.setItemText(3, _translate('StartWin', '130'))

@@ -1,8 +1,9 @@
 import os
 import time
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import QMovie
 
 from ui.forms.start_win import StartWin
 from ui.skeletons.auth import Ui_AuthWin
@@ -43,7 +44,14 @@ class AuthWin(QtWidgets.QMainWindow, Ui_AuthWin):
 
     def start_auth_worker(self):
         self.setDisabled(True)
-        self.label_error_settext('Loading...')
+        self.loading = QMovie('ui/gifs/loading.gif')
+        self.label_error.setMovie(self.loading)
+        self.label_error.setMinimumSize(QtCore.QSize(25, 25))
+        self.label_error.setMaximumSize(QtCore.QSize(25, 25))
+        self.label_error.setScaledContents(True)
+        self.loading.start()
+        self.label_error.setVisible(True)
+        # self.label_error_settext('Loading...')
         self.auth_worker.start()
 
     def AuthResultSlot(self, message):
@@ -74,6 +82,8 @@ class AuthWin(QtWidgets.QMainWindow, Ui_AuthWin):
 
     def label_error_settext(self, message):
         try:
+            self.label_error.setMinimumSize(QtCore.QSize(100, 30))
+            self.label_error.setMaximumSize(QtCore.QSize(100, 30))
             self.label_error.setText(message)
             self.label_error.setVisible(True)
         except Exception:
@@ -138,6 +148,10 @@ class AuthWorker(QThread):
     def return_auth_window(self, error_message=None):
         if error_message:
             try:
+                self.parent_win.label_error.setMinimumSize(
+                    QtCore.QSize(100, 30))
+                self.parent_win.label_error.setMaximumSize(
+                    QtCore.QSize(100, 30))
                 self.parent_win.label_error.setText(error_message)
                 self.parent_win.label_error.setVisible(True)
                 self.parent_win.setDisabled(False)
