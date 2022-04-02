@@ -81,7 +81,20 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
+# # # # # # # # # # # # # # # # # # #
+#               CUSTOM              #
+# # # # # # # # # # # # # # # # # # #
+
+*web/cookies
+
+*ui/icons/custom
+*ui/icons/icons_red
+*ui/skeletons/ui_forms
+
 chromedriver
 chromedriver.exe
-test.py
-config.json
+*test.py
+*config.json
+
+*geckodriver.log
