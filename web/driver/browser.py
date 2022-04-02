@@ -1,3 +1,6 @@
+import os
+import pickle
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -8,10 +11,10 @@ account_page = 'https://store.steampowered.com/account/'
 class Browser:
     def __init__(self, hide=False):
         self.options = webdriver.FirefoxOptions()
-        self.options.add_argument('--no-startup-window')
         if hide:
             self.options.headless = True
-        self.driver = webdriver.Firefox(options=self.options)
+        self.driver = webdriver.Firefox(
+            options=self.options, service_log_path=os.devnull)
         self.driver.set_window_size(450, 650)
 
     def auth_status(self):
@@ -32,22 +35,23 @@ class Browser:
     def quit(self):
         self.driver.close()
 
-# login_page = 'https://store.steampowered.com/login/'
-#
-# import pickle
-# driver = selenium.webdriver.Firefox()
-# # driver = selenium.webdriver.Chrome()
-# driver.get(login_page)
-#
-# while driver.current_url == login_page:
-#     time.sleep(0.5)
-# pickle.dump(driver.get_cookies(), open("cookies/cookies.pkl", "wb"))
-# driver.close()
-#
-# driver = selenium.webdriver.Firefox()
-# driver.get(login_page)
-# cookies = pickle.load(open("cookies/cookies.pkl", "rb"))
-# for cookie in cookies:
-#     driver.add_cookie(cookie)
-# driver.refresh()
-# time.sleep(50)
+    def load_cookies(self, account_name):
+        cookies = pickle.load(open(f'web/cookies/{account_name}.pkl', 'rb'))
+        for cookie in cookies:
+            self.driver.add_cookie(cookie)
+        self.driver.refresh()
+
+    def save_cookies(self):
+        self.driver.get(account_page)
+        account_name = self.driver.find_element(
+            By.CLASS_NAME, 'pageheader.youraccount_pageheader').text
+        account_name = account_name[account_name.find(' ') + 1:].lower()
+        pickle.dump(self.driver.get_cookies(), open(
+            f'web/cookies/{account_name}.pkl', 'wb'))
+
+    def get_account_name(self):
+        self.driver.get(account_page)
+        account_name = self.driver.find_element(
+            By.CLASS_NAME, 'pageheader.youraccount_pageheader').text
+        account_name = account_name[account_name.find(' ') + 1:].lower()
+        return account_name
