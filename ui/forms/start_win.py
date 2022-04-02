@@ -3,13 +3,10 @@ from PyQt5 import QtWidgets
 from ui.skeletons.start import Ui_StartWin
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_StartWin):
-    def __init__(self, browser):
+class StartWin(QtWidgets.QMainWindow, Ui_StartWin):
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # self.center()
-
-        self.browser = browser
 
     #     self.setWindowFlags(Qt.FramelessWindowHint)
     #

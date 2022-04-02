@@ -1,5 +1,4 @@
 import os
-import sys
 import threading
 import time
 
@@ -7,13 +6,14 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 
 from ui.skeletons.auth import Ui_AuthWin
+from ui.forms.start_win import StartWin
 from web.driver.browser import Browser
 
 login_page = 'https://store.steampowered.com/login/'
 account_page = 'https://store.steampowered.com/account/'
 
 
-class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
+class AuthWin(QtWidgets.QMainWindow, Ui_AuthWin):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -21,6 +21,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         self.user_auth_status = 'pending'
         self.username = ''
 
+        # self.start_win = StartWin(self.username, False)
         self.center()
 
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -31,7 +32,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         self.combo_box_refresh()
 
         self.btn_hide.clicked.connect(lambda: self.showMinimized())
-        self.btn_close.clicked.connect(lambda: sys.exit(-1))
+        self.btn_close.clicked.connect(lambda: self.close())
 
         self.sign_in_btn.clicked.connect(self.authentication)
 
@@ -44,6 +45,17 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
                 self.setCursor(Qt.ArrowCursor)
 
         self.title_bar.mouseMoveEvent = moveWindow
+        while not self.username == '':
+            print('d')
+            time.sleep(1)
+
+    def hideEvent(self, event):
+        print('HERE')
+        if not self.username == '':
+            self.start_win = StartWin()
+            self.start_win.show()
+            self.hide()
+            event.ignore()
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
@@ -111,10 +123,10 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
             self.user_auth_status = 'failed'
             self.return_auth_window('Bad cookies')
             return False
-        self.user_auth_status = 'success'
         self.browser.save_cookies()
         self.browser.quit()
         self.username = account_name
+        self.user_auth_status = 'success'
         return True
 
     def return_auth_window(self, error_message=None):
@@ -141,9 +153,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
             time.sleep(1)
         if self.user_auth_status == 'success':
             self.label_error_settext('Successfully authorized')
-            self.setDisabled(False)
-            self.close()
-            # call the next window
+            self.hide()
 
     def authentication(self):
         """

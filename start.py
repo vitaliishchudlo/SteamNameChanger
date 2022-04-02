@@ -2,14 +2,16 @@ import sys
 
 from PyQt5 import QtWidgets
 
-from ui.forms.start_window import StartWindow
+from ui.forms.auth_win import AuthWin
 
 
 def run():
     app = QtWidgets.QApplication(sys.argv)
-    start_window = StartWindow()
+    start_window = AuthWin()
     start_window.show()
-    sys.exit(app.exec_())
+    while not start_window.isVisible():
+        print('exited')
+    app.exec()
 
 
 if __name__ == '__main__':
