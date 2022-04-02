@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_RunnerWindow(object):
-    def setupUi(self, RunnerWindow):
-        RunnerWindow.setObjectName('RunnerWindow')
-        RunnerWindow.resize(327, 458)
-        self.centralwidget = QtWidgets.QWidget(RunnerWindow)
+class Ui_StatisticWindow(object):
+    def setupUi(self, StatisticWindow):
+        StatisticWindow.setObjectName('StatisticWindow')
+        StatisticWindow.resize(327, 458)
+        self.centralwidget = QtWidgets.QWidget(StatisticWindow)
         self.centralwidget.setStyleSheet('border: none;\n'
                                          'background-color: rgb(56, 55, 52);')
         self.centralwidget.setObjectName('centralwidget')
@@ -286,33 +286,35 @@ class Ui_RunnerWindow(object):
             self.labelauthor, 0, 0, 1, 1, QtCore.Qt.AlignRight)
         self.horizontalLayout_3.addWidget(self.author)
         self.verticalLayout.addWidget(self.footer)
-        RunnerWindow.setCentralWidget(self.centralwidget)
+        StatisticWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(RunnerWindow)
-        QtCore.QMetaObject.connectSlotsByName(RunnerWindow)
+        self.retranslateUi(StatisticWindow)
+        QtCore.QMetaObject.connectSlotsByName(StatisticWindow)
 
-    def retranslateUi(self, RunnerWindow):
+    def retranslateUi(self, StatisticWindow):
         _translate = QtCore.QCoreApplication.translate
-        RunnerWindow.setWindowTitle(_translate('RunnerWindow', 'MainWindow'))
-        self.label.setText(_translate('RunnerWindow', 'SteamNameChanger'))
-        self.label_username.setText(_translate('RunnerWindow', 'Username'))
-        self.label_current_nick.setText(
-            _translate('RunnerWindow', 'Current nickname:'))
+        StatisticWindow.setWindowTitle(
+            _translate('StatisticWindow', 'MainWindow'))
+        self.label.setText(_translate('StatisticWindow', 'SteamNameChanger'))
+        self.label_username.setText(_translate('StatisticWindow', 'Username'))
+        self.label_current_nick.setText(_translate(
+            'StatisticWindow', 'Current nickname:'))
         self.label_counter.setText(_translate(
-            'RunnerWindow', 'Counter of changes:'))
-        self.label_last.setText(_translate('RunnerWindow', 'Last update:'))
-        self.value_current_nick.setText(_translate('RunnerWindow', '0'))
-        self.value_counter.setText(_translate('RunnerWindow', '0'))
+            'StatisticWindow', 'Counter of changes:'))
+        self.label_last.setText(_translate('StatisticWindow', 'Last update:'))
+        self.value_current_nick.setText(_translate('StatisticWindow', '0'))
+        self.value_counter.setText(_translate('StatisticWindow', '0'))
         self.value_last.setText(_translate(
-            'RunnerWindow', 'mm:hh:ss dd.mm.yy '))
+            'StatisticWindow', 'mm:hh:ss dd.mm.yy '))
         self.text_logs.setHtml(_translate(
-            'RunnerWindow',
+            'StatisticWindow',
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
             'p, li { white-space: pre-wrap; }\n'
             "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
             "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.label_2.setText(_translate('RunnerWindow', 'Logs:'))
-        self.btn_stop.setText(_translate('RunnerWindow', 'STOP'))
-        self.labelversion.setText(_translate('RunnerWindow', 'v 1.0'))
-        self.labelauthor.setText(_translate('RunnerWindow', 'by NightExpress'))
+        self.label_2.setText(_translate('StatisticWindow', 'Logs:'))
+        self.btn_stop.setText(_translate('StatisticWindow', 'STOP'))
+        self.labelversion.setText(_translate('StatisticWindow', 'v 1.0'))
+        self.labelauthor.setText(_translate(
+            'StatisticWindow', 'by NightExpress'))

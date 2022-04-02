@@ -9,9 +9,7 @@ def run():
     app = QtWidgets.QApplication(sys.argv)
     start_window = AuthWin()
     start_window.show()
-    while not start_window.isVisible():
-        print('exited')
-    app.exec()
+    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
