@@ -19,6 +19,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         self.setupUi(self)
 
         self.user_auth_status = 'pending'
+        self.username = ''
 
         self.center()
 
@@ -95,6 +96,7 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         else:
             self.user_auth_status = 'success'
             self.browser.save_cookies()
+            self.username = self.browser.get_account_name()
             self.browser.quit()
             return True
 
@@ -111,6 +113,8 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
             return False
         self.user_auth_status = 'success'
         self.browser.save_cookies()
+        self.browser.quit()
+        self.username = account_name
         return True
 
     def return_auth_window(self, error_message=None):
@@ -138,6 +142,8 @@ class StartWindow(QtWidgets.QMainWindow, Ui_AuthWin):
         if self.user_auth_status == 'success':
             self.label_error_settext('Successfully authorized')
             self.setDisabled(False)
+            self.close()
+            # call the next window
 
     def authentication(self):
         """
