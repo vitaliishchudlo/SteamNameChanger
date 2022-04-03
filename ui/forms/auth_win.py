@@ -115,10 +115,10 @@ class AuthWorker(QThread):
         Register a new account
         """
         self.browser = Browser()
-        self.browser.get_steam()
-        while self.browser.driver.current_url == 'https://store.steampowered.com/login/':
+        self.browser.get_home()
+        while self.browser.driver.current_url == 'https://steamcommunity.com/login/home/':
             time.sleep(0.5)
-        if not self.browser.driver.current_url == 'https://store.steampowered.com/':
+        if self.browser.driver.current_url.find('https://steamcommunity.com/id/') < 0:
             self.return_auth_window('Do not leave Steam`s page')
             return False
         if not self.browser.auth_status():
@@ -135,7 +135,6 @@ class AuthWorker(QThread):
         Sign in account that exists
         """
         self.browser = Browser(hide=True)
-        self.browser.get_steam()
         self.browser.load_cookies(account_name)
         if not bool(self.browser.auth_status()):
             self.return_auth_window('Bad cookies')
@@ -149,9 +148,9 @@ class AuthWorker(QThread):
         if error_message:
             try:
                 self.parent_win.label_error.setMinimumSize(
-                    QtCore.QSize(100, 30))
+                    QtCore.QSize(250, 25))
                 self.parent_win.label_error.setMaximumSize(
-                    QtCore.QSize(100, 30))
+                    QtCore.QSize(250, 25))
                 self.parent_win.label_error.setText(error_message)
                 self.parent_win.label_error.setVisible(True)
                 self.parent_win.setDisabled(False)

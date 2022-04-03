@@ -52,7 +52,8 @@ class Ui_StatisticWindow(object):
                                  'font: bold;\n'
                                  '')
         self.label.setObjectName('label')
-        self.verticalLayout_3.addWidget(self.label, 0, QtCore.Qt.AlignLeft)
+        self.verticalLayout_3.addWidget(
+            self.label, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.horizontalLayout.addWidget(self.frame_title)
         self.frame_btns = QtWidgets.QFrame(self.title_bar)
         self.frame_btns.setMaximumSize(QtCore.QSize(100, 16777215))
@@ -302,10 +303,9 @@ class Ui_StatisticWindow(object):
         self.label_counter.setText(_translate(
             'StatisticWindow', 'Counter of changes:'))
         self.label_last.setText(_translate('StatisticWindow', 'Last update:'))
-        self.value_current_nick.setText(_translate('StatisticWindow', '0'))
-        self.value_counter.setText(_translate('StatisticWindow', '0'))
-        self.value_last.setText(_translate(
-            'StatisticWindow', 'mm:hh:ss dd.mm.yy '))
+        self.value_current_nick.setText(_translate('StatisticWindow', 'N/A'))
+        self.value_counter.setText(_translate('StatisticWindow', 'N/A'))
+        self.value_last.setText(_translate('StatisticWindow', 'N/A'))
         self.text_logs.setHtml(_translate(
             'StatisticWindow',
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
