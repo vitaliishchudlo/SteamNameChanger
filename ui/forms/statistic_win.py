@@ -21,6 +21,9 @@ class StatisticWin(QtWidgets.QMainWindow, Ui_StatisticWindow):
 
         self.btn_stop.clicked.connect(self.return_back)
 
+        self.btn_hide.clicked.connect(lambda: self.showMinimized())
+        self.btn_close.clicked.connect(lambda: self.close())
+
         self.changer_worker_status = True
         self.changer_worker = ChangeWorker(self)
         self.changer_worker.LogsUpdate.connect(self.LogsUpdate)
@@ -143,7 +146,7 @@ class ChangeWorker(QThread):
         self.parent_win.btn_stop.setDisabled(True)
         self.nicknames_update()
         self.LogsUpdate.emit('[INFO]: Starting changing...')
-        self.browser = Browser(hide=True)
+        self.browser = Browser()
         self.browser.load_cookies(self.parent_win.label_username.text())
         self.browser.get_edit_page()
         if self.parent_win.start_win.ordinal.isChecked():

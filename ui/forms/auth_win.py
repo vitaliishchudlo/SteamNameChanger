@@ -114,7 +114,7 @@ class AuthWorker(QThread):
         """
         Register a new account
         """
-        self.browser = Browser()
+        self.browser = Browser(hide=False)
         self.browser.get_home()
         while self.browser.driver.current_url == 'https://steamcommunity.com/login/home/':
             time.sleep(0.5)
@@ -134,7 +134,7 @@ class AuthWorker(QThread):
         """
         Sign in account that exists
         """
-        self.browser = Browser(hide=True)
+        self.browser = Browser()
         self.browser.load_cookies(account_name)
         if not bool(self.browser.auth_status()):
             self.return_auth_window('Bad cookies')

@@ -10,12 +10,14 @@ home_page = 'https://steamcommunity.com/login/home/'
 
 
 class Browser:
-    def __init__(self, hide=False):
-        self.options = webdriver.FirefoxOptions()
+    def __init__(self, hide=True):
+        self.options = webdriver.ChromeOptions()
+        self.options.add_experimental_option(
+            'excludeSwitches', ['enable-logging'])
         if hide:
             self.options.headless = True
-        self.driver = webdriver.Firefox(
-            options=self.options, service_log_path=os.devnull)
+        self.driver = webdriver.Chrome(
+            options=self.options)  # , service_log_path = os.devnull
         self.driver.set_window_size(450, 650)
 
     def auth_status(self):
@@ -62,7 +64,7 @@ class Browser:
 
     def get_account_name(self):
         self.driver.get(home_page)
-        self.driver.set_window_size(911, 500)
+        self.driver.set_window_size(1000, 500)
         self.driver.find_element(
             By.XPATH, '//*[@id="account_pulldown"]').click()
         account_name = self.driver.find_element(By.XPATH,
