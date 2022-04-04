@@ -119,8 +119,9 @@ class AuthWorker(QThread):
         while self.browser.driver.current_url == 'https://steamcommunity.com/login/home/':
             time.sleep(0.5)
         if self.browser.driver.current_url.find('https://steamcommunity.com/id/') < 0:
-            self.return_auth_window('Do not leave Steam`s page')
-            return False
+            if self.browser.driver.current_url.find('https://steamcommunity.com/profiles/') < 0:
+                self.return_auth_window('Do not leave Steam`s page')
+                return False
         if not self.browser.auth_status():
             self.return_auth_window('You are not authorized')
             return False

@@ -3,6 +3,8 @@ import pickle
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from subprocess import CREATE_NO_WINDOW
 
 login_page = 'https://store.steampowered.com/login/'
 account_page = 'https://store.steampowered.com/account/'
@@ -14,10 +16,12 @@ class Browser:
         self.options = webdriver.ChromeOptions()
         self.options.add_experimental_option(
             'excludeSwitches', ['enable-logging'])
+        self.service = Service('chromedriver.exe')
+        self.service.creationflags = CREATE_NO_WINDOW
         if hide:
             self.options.headless = True
         self.driver = webdriver.Chrome(
-            options=self.options)  # , service_log_path = os.devnull
+            options=self.options, service=self.service)  # , service_log_path = os.devnull
         self.driver.set_window_size(450, 650)
 
     def auth_status(self):
