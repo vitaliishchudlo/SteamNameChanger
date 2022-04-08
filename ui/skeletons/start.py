@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/skeletons/ui_forms/start.ui'
+# Form implementation generated from reading ui file 'ui\skeletons\ui_forms\start.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -320,6 +320,7 @@ class Ui_StartWin(object):
         self.gridLayout = QtWidgets.QGridLayout(self.version)
         self.gridLayout.setObjectName('gridLayout')
         self.labelversion = QtWidgets.QLabel(self.version)
+        self.labelversion.setOpenExternalLinks(True)
         self.labelversion.setObjectName('labelversion')
         self.gridLayout.addWidget(
             self.labelversion, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
@@ -331,6 +332,7 @@ class Ui_StartWin(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.author)
         self.gridLayout_4.setObjectName('gridLayout_4')
         self.labelauthor = QtWidgets.QLabel(self.author)
+        self.labelauthor.setOpenExternalLinks(True)
         self.labelauthor.setObjectName('labelauthor')
         self.gridLayout_4.addWidget(
             self.labelauthor, 0, 0, 1, 1, QtCore.Qt.AlignRight)
@@ -362,5 +364,10 @@ class Ui_StartWin(object):
                                                                 'Example 3\n'
                                                                 ''))
         self.btn_start.setText(_translate('StartWin', 'Start'))
-        self.labelversion.setText(_translate('StartWin', 'v 1.0'))
-        self.labelauthor.setText(_translate('StartWin', 'by NightExpress'))
+        self.labelversion.setText(_translate(
+            'StartWin',
+            "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo/steam_name_changer/releases\">"
+            "<span style=\" text-decoration: underline; color:#0000ff;\">v 2.0</span></a></p></body></html>"))
+        self.labelauthor.setText(_translate(
+            'StartWin', "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo\"><span style=\""
+                        " text-decoration: underline; color:#0000ff;\">by NightExpress</span></a></p></body></html>"))
