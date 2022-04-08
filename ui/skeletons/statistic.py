@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/skeletons/ui_forms/statistic.ui'
+# Form implementation generated from reading ui file 'ui\skeletons\ui_forms\statistic.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -271,6 +271,7 @@ class Ui_StatisticWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(self.version)
         self.gridLayout.setObjectName('gridLayout')
         self.labelversion = QtWidgets.QLabel(self.version)
+        self.labelversion.setOpenExternalLinks(True)
         self.labelversion.setObjectName('labelversion')
         self.gridLayout.addWidget(
             self.labelversion, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
@@ -282,6 +283,7 @@ class Ui_StatisticWindow(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.author)
         self.gridLayout_4.setObjectName('gridLayout_4')
         self.labelauthor = QtWidgets.QLabel(self.author)
+        self.labelauthor.setOpenExternalLinks(True)
         self.labelauthor.setObjectName('labelauthor')
         self.gridLayout_4.addWidget(
             self.labelauthor, 0, 0, 1, 1, QtCore.Qt.AlignRight)
@@ -311,11 +313,16 @@ class Ui_StatisticWindow(object):
             "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
             "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
             'p, li { white-space: pre-wrap; }\n'
-            "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-            "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; "
-            "-qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+            "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;"
+            " -qt-block-indent:0; text-indent:0px; font-family:\'Ubuntu\'; font-size:11pt;\"><br /></p></body></html>"))
         self.label_2.setText(_translate('StatisticWindow', 'Logs:'))
         self.btn_stop.setText(_translate('StatisticWindow', 'STOP'))
-        self.labelversion.setText(_translate('StatisticWindow', 'v 1.0'))
+        self.labelversion.setText(_translate(
+            'StatisticWindow',
+            "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo/steam_name_changer/releases\">"
+            "<span style=\" text-decoration: underline; color:#0000ff;\">v 2.0</span></a></p></body></html>"))
         self.labelauthor.setText(_translate(
-            'StatisticWindow', 'by NightExpress'))
+            'StatisticWindow',
+            "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo\">"
+            "<span style=\" text-decoration: underline; color:#0000ff;\">by NightExpress</span></a></p></body></html>"))

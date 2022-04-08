@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/skeletons/ui_forms/auth.ui'
+# Form implementation generated from reading ui file 'ui\skeletons\ui_forms\auth.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -192,7 +192,7 @@ class Ui_AuthWin(object):
         self.combo_username = QtWidgets.QComboBox(self.sign_in_form)
         self.combo_username.setStyleSheet('QComboBox {\n'
                                           '    border: 1px solid gray;\n'
-                                          '    border-radius: 3px;\n'
+                                          '    border-radius: 5px;\n'
                                           '    padding: 1px 18px 1px 3px;\n'
                                           '    min-width: 6em;\n'
                                           '}\n'
@@ -241,8 +241,10 @@ class Ui_AuthWin(object):
                                           '}\n'
                                           'QComboBox QAbstractItemView {\n'
                                           '    border: 2px solid darkgray;\n'
-                                          '    selection-background-color: lightgray;\n'
-                                          '}')
+                                          '    \n'
+                                          '    background-color: rgb(175, 167, 167);\n'
+                                          '}\n'
+                                          '')
         self.combo_username.setObjectName('combo_username')
         self.combo_username.addItem('')
         self.combo_username.setItemText(0, '')
@@ -257,7 +259,20 @@ class Ui_AuthWin(object):
             self.sign_in_btn.sizePolicy().hasHeightForWidth())
         self.sign_in_btn.setSizePolicy(sizePolicy)
         self.sign_in_btn.setMinimumSize(QtCore.QSize(350, 30))
-        self.sign_in_btn.setStyleSheet('background-color: rgb(13, 118, 29);')
+        self.sign_in_btn.setStyleSheet('QPushButton {\n'
+                                       '    border-style: solid;\n'
+                                       '    border-color: rgb(0, 0, 0);\n'
+                                       '    border-width: 1px;\n'
+                                       '    border-radius: 8px;\n'
+                                       '    background-color: rgb(18, 150, 38);\n'
+                                       '    border: 0;\n'
+                                       '}\n'
+                                       '\n'
+                                       'QPushButton:hover {\n'
+                                       'background-color: rgb(13, 118, 29);\n'
+                                       '\n'
+                                       '}\n'
+                                       '')
         self.sign_in_btn.setObjectName('sign_in_btn')
         self.verticalLayout_3.addWidget(self.sign_in_btn)
         self.horizontalLayout_4.addWidget(self.sign_in_form)
@@ -292,8 +307,10 @@ class Ui_AuthWin(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.version)
         self.gridLayout_3.setObjectName('gridLayout_3')
         self.label_version = QtWidgets.QLabel(self.version)
+        self.label_version.setOpenExternalLinks(True)
         self.label_version.setObjectName('label_version')
-        self.gridLayout_3.addWidget(self.label_version, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(
+            self.label_version, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
         self.horizontalLayout.addWidget(self.version)
         self.author = QtWidgets.QFrame(self.footer)
         self.author.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -302,8 +319,10 @@ class Ui_AuthWin(object):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.author)
         self.gridLayout_2.setObjectName('gridLayout_2')
         self.label_author = QtWidgets.QLabel(self.author)
+        self.label_author.setOpenExternalLinks(True)
         self.label_author.setObjectName('label_author')
-        self.gridLayout_2.addWidget(self.label_author, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(
+            self.label_author, 0, 0, 1, 1, QtCore.Qt.AlignRight)
         self.horizontalLayout.addWidget(self.author)
         self.verticalLayout.addWidget(self.footer)
         AuthWin.setCentralWidget(self.centralwidget)
@@ -317,10 +336,16 @@ class Ui_AuthWin(object):
         self.label.setText(_translate('AuthWin', 'SteamNameChanger'))
         self.program_name.setText(_translate('AuthWin', 'SteamNameChanger'))
         self.label_sign_in.setText(_translate(
-            'AuthWin', "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
+            'AuthWin',
+            "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
         self.combo_username.setItemText(
             1, _translate('AuthWin', 'Add a new account...'))
         self.sign_in_btn.setText(_translate('AuthWin', 'Sign in'))
-        self.label_version.setText(_translate('AuthWin', 'v.1.0'))
+        self.label_version.setText(_translate(
+            'AuthWin',
+            "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo/steam_name_changer/releases\">"
+            "<span style=\" text-decoration: underline; color:#0000ff;\">v 2.0</span></a></p></body></html>"))
         self.label_author.setText(_translate(
-            'AuthWin', "<html><head/><body><p align=\"right\">by NightExpress</p></body></html>"))
+            'AuthWin',
+            "<html><head/><body><p><a href=\"https://github.com/vitaliishchudlo\"><span style=\""
+            " text-decoration: underline; color:#0000ff;\">by NightExpress</span></a></p></body></html>"))
