@@ -98,4 +98,14 @@ chromedriver.exe
 *config.json
 
 *geckodriver.log
+<<<<<<< HEAD
 /output
+=======
+
+avatar
+*avatar
+/avatar
+/exe
+exe
+*exe
+>>>>>>> c03541f1a7252f649d8318d573405d05f7bfca78
