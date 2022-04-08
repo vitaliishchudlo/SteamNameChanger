@@ -81,7 +81,7 @@ class ChangeWorker(QThread):
         self.current_nickname = 'N/A'
         self.last_update = 'N/A'
 
-    def ordinaly_change(self):
+    def ordinal_change(self):
         self.parent_win.btn_stop.setDisabled(False)
         input_line = self.browser.driver.find_element(
             By.CLASS_NAME, 'DialogInput.DialogInputPlaceholder.DialogTextInputBase')
@@ -157,7 +157,7 @@ class ChangeWorker(QThread):
         self.browser.load_cookies(self.parent_win.label_username.text())
         self.browser.get_edit_page()
         if self.parent_win.start_win.ordinal.isChecked():
-            self.ordinaly_change()
+            self.ordinal_change()
         if self.parent_win.start_win.random.isChecked():
             self.random_change()
 
