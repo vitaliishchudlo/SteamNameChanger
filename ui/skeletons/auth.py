@@ -49,7 +49,7 @@ class Ui_AuthWin(object):
                                  '')
         self.label.setObjectName('label')
         self.gridLayout_4.addWidget(
-            self.label, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
+            self.label, 0, 0, 1, 1, QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.horizontalLayout_2.addWidget(self.frame_title)
         self.frame_btns = QtWidgets.QFrame(self.title_bar)
         self.frame_btns.setMaximumSize(QtCore.QSize(100, 16777215))
@@ -317,8 +317,7 @@ class Ui_AuthWin(object):
         self.label.setText(_translate('AuthWin', 'SteamNameChanger'))
         self.program_name.setText(_translate('AuthWin', 'SteamNameChanger'))
         self.label_sign_in.setText(_translate(
-            'AuthWin',
-            "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
+            'AuthWin', "<html><head/><body><p align=\"center\"><span style=\" font-size:20pt;\">Sign in</span></p></body></html>"))
         self.combo_username.setItemText(
             1, _translate('AuthWin', 'Add a new account...'))
         self.sign_in_btn.setText(_translate('AuthWin', 'Sign in'))

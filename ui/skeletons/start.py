@@ -52,7 +52,8 @@ class Ui_StartWin(object):
                                  'font: bold;\n'
                                  '')
         self.label.setObjectName('label')
-        self.verticalLayout_2.addWidget(self.label, 0, QtCore.Qt.AlignLeft)
+        self.verticalLayout_2.addWidget(
+            self.label, 0, QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.horizontalLayout.addWidget(self.frame_title)
         self.frame_btns = QtWidgets.QFrame(self.title_bar)
         self.frame_btns.setMaximumSize(QtCore.QSize(100, 16777215))
