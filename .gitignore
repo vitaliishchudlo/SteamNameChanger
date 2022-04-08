@@ -98,3 +98,4 @@ chromedriver.exe
 *config.json
 
 *geckodriver.log
+/output
