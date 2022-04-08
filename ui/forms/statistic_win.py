@@ -16,13 +16,15 @@ class StatisticWin(QtWidgets.QMainWindow, Ui_StatisticWindow):
         super().__init__()
         self.setupUi(self)
 
+        self.browser = Browser()
+
         self.start_win = start_win
         self.label_username.setText(self.start_win.label_username.text())
 
         self.btn_stop.clicked.connect(self.return_back)
 
         self.btn_hide.clicked.connect(lambda: self.showMinimized())
-        self.btn_close.clicked.connect(lambda: self.close())
+        self.btn_close.clicked.connect(self.exit())
 
         self.changer_worker_status = True
         self.changer_worker = ChangeWorker(self)
@@ -39,8 +41,13 @@ class StatisticWin(QtWidgets.QMainWindow, Ui_StatisticWindow):
 
         self.title_bar.mouseMoveEvent = moveWindow
 
+    def exit(self):
+        self.browser.quit()
+        self.close()
+
     def return_back(self):
         self.changer_worker_status = False
+        self.browser.quit()
         self.start_win.show()
         self.hide()
 
@@ -146,7 +153,7 @@ class ChangeWorker(QThread):
         self.parent_win.btn_stop.setDisabled(True)
         self.nicknames_update()
         self.LogsUpdate.emit('[INFO]: Starting changing...')
-        self.browser = Browser()
+        self.browser = self.parent_win.browser
         self.browser.load_cookies(self.parent_win.label_username.text())
         self.browser.get_edit_page()
         if self.parent_win.start_win.ordinal.isChecked():

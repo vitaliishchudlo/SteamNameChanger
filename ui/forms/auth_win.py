@@ -51,7 +51,6 @@ class AuthWin(QtWidgets.QMainWindow, Ui_AuthWin):
         self.label_error.setScaledContents(True)
         self.loading.start()
         self.label_error.setVisible(True)
-        # self.label_error_settext('Loading...')
         self.auth_worker.start()
 
     def AuthResultSlot(self, message):
@@ -128,6 +127,7 @@ class AuthWorker(QThread):
         else:
             self.browser.save_cookies()
             self.account_name = self.browser.get_account_name()
+            self.browser.quit()
             self.return_auth_window('Successfully authorized')
             return True
 
@@ -141,8 +141,8 @@ class AuthWorker(QThread):
             self.return_auth_window('Bad cookies')
             return False
         self.browser.save_cookies()
-        self.browser.quit()
         self.account_name = account_name
+        self.browser.quit()
         return True
 
     def return_auth_window(self, error_message=None):
