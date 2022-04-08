@@ -100,5 +100,8 @@ chromedriver.exe
 *geckodriver.log
 
 avatar
-avatar/*
 *avatar
+/avatar
+/exe
+exe
+*exe

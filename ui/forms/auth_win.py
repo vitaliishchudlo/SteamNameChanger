@@ -73,6 +73,10 @@ class AuthWin(QtWidgets.QMainWindow, Ui_AuthWin):
         return self.sign_in_btn.setDisabled(False)
 
     def combo_box_refresh(self):
+        if not os.path.isdir('web'):
+            os.mkdir('web')
+        if not os.path.isdir('web/cookies'):
+            os.mkdir('web/cookies')
         pklfiles = []
         for file in os.listdir('web/cookies'):
             pklfiles.append(file[:-4])
