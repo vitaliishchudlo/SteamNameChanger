@@ -24,7 +24,7 @@ class StatisticWin(QtWidgets.QMainWindow, Ui_StatisticWindow):
         self.btn_stop.clicked.connect(self.return_back)
 
         self.btn_hide.clicked.connect(lambda: self.showMinimized())
-        self.btn_close.clicked.connect(self.exit())
+        self.btn_close.clicked.connect(self.exit)
 
         self.changer_worker_status = True
         self.changer_worker = ChangeWorker(self)
