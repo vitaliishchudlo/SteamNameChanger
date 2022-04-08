@@ -98,3 +98,7 @@ chromedriver.exe
 *config.json
 
 *geckodriver.log
+
+avatar
+avatar/*
+*avatar
