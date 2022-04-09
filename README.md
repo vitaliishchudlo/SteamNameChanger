@@ -6,7 +6,7 @@ Download sources
 - **Windows** - the most current version is [here](https://github.com/vitaliishchudlo/steam_name_changer/releases)
 
 
-About
+Prerequisites
 -------------
 This script allows you to change the nickname in the game platform steam.
 Nicknames can be changed with a certain interval.
