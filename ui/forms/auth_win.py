@@ -132,7 +132,7 @@ class AuthWorker(QThread):
             self.browser.save_cookies()
             self.account_name = self.browser.get_account_name()
             self.browser.quit()
-            self.return_auth_window('Successfully authorized')
+            self.return_auth_window('Successfully authorized', browser_closed=True)
             return True
 
     def sign_in(self, account_name):
@@ -149,7 +149,7 @@ class AuthWorker(QThread):
         self.browser.quit()
         return True
 
-    def return_auth_window(self, error_message=None):
+    def return_auth_window(self, error_message=None, browser_closed=True):
         if error_message:
             try:
                 self.parent_win.label_error.setMinimumSize(
@@ -161,4 +161,5 @@ class AuthWorker(QThread):
                 self.parent_win.setDisabled(False)
             except Exception:
                 return
-        self.browser.quit()
+        if not browser_closed:
+            self.browser.quit()
