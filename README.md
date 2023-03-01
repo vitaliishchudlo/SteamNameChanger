@@ -1,7 +1,7 @@
 # SteamNameChanger
 
 ### Download sources
-- **Windows** - the most current version is [here](https://github.com/vitaliishchudlo/steam_name_changer/releases)
+- **Windows** - the most current version is [here](https://github.com/vitaliishchudlo/steam_name_changer/releases/latest)
 
 
 ### Prerequisites
